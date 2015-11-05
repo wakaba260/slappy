@@ -3,3 +3,4 @@ Gemfile.lock
 /coverage
 /vendor/bundle
 /tmp
+.env
