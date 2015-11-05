@@ -7,3 +7,6 @@ before_install: gem install bundler -v "~> 1.10"
 script:
   - ruby --version
   - bundle exec rspec
+branches:
+  only:
+    - master
