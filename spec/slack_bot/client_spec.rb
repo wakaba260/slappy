@@ -28,6 +28,8 @@ describe SlackBot::Client do
 
   describe '#start' do
     before do
+      # HACK: slack-api is used EventMachine.
+      # This code is stopped EventMachine after connected when test.
       Thread.new do
         sleep 5
         EventMachine.add_timer 1 do
