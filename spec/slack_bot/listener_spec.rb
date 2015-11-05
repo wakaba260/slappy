@@ -6,7 +6,7 @@ describe SlackBot::Listener do
   let(:callback) { proc { result } }
   let(:result)   { 'test' }
   let(:event)    { SlackBot::Event.new(data) }
-  let(:data)     { { text: 'test' } }
+  let(:data)     { { 'text' => 'test' } }
 
   describe '#call' do
     context 'when match pattern' do
