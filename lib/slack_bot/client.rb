@@ -11,10 +11,12 @@ module SlackBot
     end
 
     def start
-      @listeners.each do |key, listener|
+      @listeners.each do |key, array|
         @client.on key do |data|
-          event = Event.new(data) if key == :message
-          listener.call(event)
+          array.each do |listener|
+            event = Event.new(data) if key == :message
+            listener.call(event)
+          end
         end
       end
       @client.start
