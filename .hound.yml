@@ -7,14 +7,20 @@ AllCops:
   DisplayCopNames: true
 
 ##################### Style ##################################
-#
+
 Style/Documentation:
   Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
 
 ##################### Metrics ##################################
 
 Metrics/AbcSize:
   Max: 30
+
+Metrics/CyclomaticComplexity:
+  Max: 10
 
 Metrics/LineLength:
   Max: 100
