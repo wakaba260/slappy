@@ -1,9 +1,2 @@
-AllCops:
-  Exclude:
-    - "vendor/**/*"
-    - "Gemfile"
-    - "Guardfile"
-    - "slack_bot.gemspec"
-
-Style/Documentation:
-  Enabled: false
+inherit_from:
+  - .hound.yml
