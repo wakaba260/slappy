@@ -4,13 +4,13 @@ describe SlackBot::Event do
   let(:event) { SlackBot::Event.new(data) }
   let(:data) do
     {
-      type:     'message',
-      channel:  'C0D1TQL0L',
-      user:     'U04RNAV76',
-      text:     'this is test message',
-      ts:       '1446695868.000046',
-      event_ts: '1446695868.000046',
-      team:     'T029DFCEP'
+      'type'     => 'message',
+      'channel'  => 'C0D1TQL0L',
+      'user'     => 'U04RNAV76',
+      'text'     => 'this is test message',
+      'ts'       => '1446695868.000046',
+      'event_ts' => '1446695868.000046',
+      'team'     => 'T029DFCEP'
     }
   end
 
@@ -34,21 +34,21 @@ describe SlackBot::Event do
     end
 
     context 'type' do
-      let(:key) { :type }
-      let(:return_value) { data[:type] }
+      let(:key) { 'type' }
+      let(:return_value) { data['type'] }
       it_behaves_like 'check defined_method'
     end
 
     context 'text' do
-      let(:key) { :text }
-      let(:return_value) { data[:text] }
+      let(:key) { 'text' }
+      let(:return_value) { data['text'] }
       it_behaves_like 'check defined_method'
     end
 
     context 'when text is nil' do
       subject { event.text }
       let(:event) { SlackBot::Event.new(data_text_nil) }
-      let(:data_text_nil) { data.reject { |k, _v| k == :text } }
+      let(:data_text_nil) { data.reject { |k, _v| k == 'text' } }
 
       it { expect { subject }.not_to raise_error }
       it 'should return empty return value' do

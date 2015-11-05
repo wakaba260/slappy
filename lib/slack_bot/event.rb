@@ -5,16 +5,17 @@ module SlackBot
     end
 
     def text
-      @data[:text].to_s
+      @data['text'].to_s
     end
 
     def method_missing(method, *args)
-      @data.key?(method) || super
-      @data[method]
+      key = method.to_s
+      @data.key?(key) || super
+      @data[key]
     end
 
     def respond_to_missing?(method, include_private)
-      @data.key?(method) || super
+      @data.key?(method.to_s) || super
     end
   end
 end
