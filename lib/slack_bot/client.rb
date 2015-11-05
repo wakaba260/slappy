@@ -14,7 +14,7 @@ module SlackBot
       @listeners.each do |key, array|
         @client.on key do |data|
           array.each do |listener|
-            event = Event.new(data) if key == :message
+            event = Event.new(data, listener.pattern) if key == :message
             listener.call(event)
           end
         end

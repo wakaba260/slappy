@@ -28,6 +28,8 @@ describe SlackBot::Client do
 
   describe '#start' do
     before do
+      client.hello { 'hello' }
+      client.hear(/hear/) { 'hear' }
       # HACK: slack-api is used EventMachine.
       # This code is stopped EventMachine after connected when test.
       Thread.new do

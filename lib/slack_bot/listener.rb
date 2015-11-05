@@ -9,5 +9,9 @@ module SlackBot
       return unless event.text.match @regexp
       @callback.call(event)
     end
+
+    def pattern
+      @regexp
+    end
   end
 end

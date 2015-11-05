@@ -5,7 +5,7 @@ describe SlackBot::Listener do
   let(:pattern)  { /test/ }
   let(:callback) { proc { result } }
   let(:result)   { 'test' }
-  let(:event)    { SlackBot::Event.new(data) }
+  let(:event)    { SlackBot::Event.new(data, pattern) }
   let(:data)     { { 'text' => 'test' } }
 
   describe '#call' do
