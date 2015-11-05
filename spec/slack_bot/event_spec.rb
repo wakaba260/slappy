@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe SlackBot::Event do
-  let(:event) { SlackBot::Event.new(data) }
+  let(:event)   { SlackBot::Event.new(data, pattern) }
+  let(:pattern) { /test (.*)/ }
   let(:data) do
     {
       'type'     => 'message',
@@ -12,6 +13,12 @@ describe SlackBot::Event do
       'event_ts' => '1446695868.000046',
       'team'     => 'T029DFCEP'
     }
+  end
+
+  describe '#match_data' do
+    subject { event.match_data }
+    let(:matcher) { data['text'].match pattern }
+    it { is_expected.to eq matcher }
   end
 
   describe 'defined_method' do
@@ -47,7 +54,7 @@ describe SlackBot::Event do
 
     context 'when text is nil' do
       subject { event.text }
-      let(:event) { SlackBot::Event.new(data_text_nil) }
+      let(:event) { SlackBot::Event.new(data_text_nil, pattern) }
       let(:data_text_nil) { data.reject { |k, _v| k == 'text' } }
 
       it { expect { subject }.not_to raise_error }
