@@ -2,6 +2,9 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'slack_bot'
 require 'simplecov'
 require 'coveralls'
+require 'dotenv'
+
+Dotenv.load
 
 Coveralls.wear!
 

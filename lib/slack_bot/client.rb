@@ -4,8 +4,8 @@ require 'slack_bot/listener'
 
 module SlackBot
   class Client
-    def initialize
-      Slack.configure { |config| config.token = @token }
+    def initialize(token)
+      Slack.configure { |config| config.token = token }
       @client = Slack.realtime
       @listeners = {}
     end
