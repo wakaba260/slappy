@@ -1,21 +1,18 @@
+require 'hashie'
+require 'forwardable'
+
 module SlackBot
   class Event
+    extend Forwardable
+
+    def_delegators :@data, :method_missing, :respond_to_missing?
+
     def initialize(data)
-      @data = data
+      @data = Hashie::Mash.new data
     end
 
     def text
       @data['text'].to_s
-    end
-
-    def method_missing(method, *args)
-      key = method.to_s
-      @data.key?(key) || super
-      @data[key]
-    end
-
-    def respond_to_missing?(method, include_private)
-      @data.key?(method.to_s) || super
     end
   end
 end
