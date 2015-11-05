@@ -1,0 +1,8 @@
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "Gemfile"
+    - "slack_bot.gemspec"
+
+Style/Documentation:
+  Enabled: false
