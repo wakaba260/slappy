@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe SlackBot::Listener do
-  let(:listener) { SlackBot::Listener.new(pattern, callback) }
+describe Slappy::Listener do
+  let(:listener) { Slappy::Listener.new(pattern, callback) }
   let(:pattern)  { /test/ }
   let(:callback) { proc { result } }
   let(:result)   { 'test' }
-  let(:event)    { SlackBot::Event.new(data, pattern) }
+  let(:event)    { Slappy::Event.new(data, pattern) }
   let(:data)     { { 'text' => 'test' } }
 
   describe '#call' do

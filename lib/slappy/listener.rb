@@ -1,4 +1,4 @@
-module SlackBot
+module Slappy
   class Listener
     def initialize(regexp, callback)
       @regexp = regexp

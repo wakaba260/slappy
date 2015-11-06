@@ -1,7 +1,7 @@
 require 'hashie'
 require 'forwardable'
 
-module SlackBot
+module Slappy
   class Event
     extend Forwardable
 

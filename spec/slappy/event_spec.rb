@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe SlackBot::Event do
-  let(:event)   { SlackBot::Event.new(data, pattern) }
+describe Slappy::Event do
+  let(:event)   { Slappy::Event.new(data, pattern) }
   let(:pattern) { /test (.*)/ }
   let(:data) do
     {
@@ -54,7 +54,7 @@ describe SlackBot::Event do
 
     context 'when text is nil' do
       subject { event.text }
-      let(:event) { SlackBot::Event.new(data_text_nil, pattern) }
+      let(:event) { Slappy::Event.new(data_text_nil, pattern) }
       let(:data_text_nil) { data.reject { |k, _v| k == 'text' } }
 
       it { expect { subject }.not_to raise_error }

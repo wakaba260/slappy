@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe SlackBot::Client do
-  let(:client) { SlackBot::Client.new(token) }
+describe Slappy::Client do
+  let(:client) { Slappy::Client.new(token) }
   let(:token)  { ENV['SLACK_TOKEN'] }
 
   describe '#hear' do
