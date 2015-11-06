@@ -76,13 +76,13 @@ bundle exec rspec
 
 ## Feature
 
-- [] Send Message
-- [] Support private channel
-- [] Support Schedule event (cron like)
-- [] Generate template settings
-- [] CLI commands
-- [] Add bot name
-- [] client#respond (hubot#respond)
+- [ ] Send Message
+- [ ] Support private channel
+- [ ] Support Schedule event (cron like)
+- [ ] Generate template settings
+- [ ] CLI commands
+- [ ] Add bot name
+- [ ] client#respond (hubot#respond)
 
 ## Contributing
 
