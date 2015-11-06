@@ -4,8 +4,8 @@ require 'slappy/listener'
 
 module Slappy
   class Client
-    def initialize(token)
-      Slack.configure { |config| config.token = token }
+    def initialize
+      Slack.configure { |config| config.token = ENV['SLACK_TOKEN'] }
       @client = Slack.realtime
       @listeners = {}
     end
