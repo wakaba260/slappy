@@ -23,11 +23,19 @@ Or install it yourself as:
     $ gem install slappy
 
 ## Usage
+### ENV
+Store configuration value in environment variables. They are easy to change between deploys without changing any code.
+
+```
+SLACK_TOKEN - required
+```
+
+### Example Code
 
 ```ruby
 require 'slappy'
 
-slappy = Slappy::Client.new(ENV['SLACK_TOKEN'])
+slappy = Slappy::Client.new
 
 # called when start up
 slappy.hello do
