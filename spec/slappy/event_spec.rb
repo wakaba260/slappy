@@ -16,7 +16,7 @@ describe Slappy::Event do
   end
 
   describe '#match_data' do
-    subject { event.match_data }
+    subject { event.matches }
     let(:matcher) { data['text'].match pattern }
     it { is_expected.to eq matcher }
   end
