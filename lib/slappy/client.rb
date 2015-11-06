@@ -1,11 +1,12 @@
 require 'slack'
 require 'slappy/event'
 require 'slappy/listener'
+require 'slappy/configuration'
 
 module Slappy
   class Client
     def initialize
-      Slack.configure { |config| config.token = ENV['SLACK_TOKEN'] }
+      Slack.configure { |slack| slack.token = config.token }
       @listeners = {}
     end
 
@@ -33,6 +34,12 @@ module Slappy
     def hear(regexp, &block)
       @listeners[:message] ||= []
       @listeners[:message].push Listener.new(regexp, block)
+    end
+
+    private
+
+    def config
+      Slappy.configuration
     end
   end
 end
