@@ -10,3 +10,6 @@ script:
 branches:
   only:
     - master
+addons:
+  code_climate:
+    repo_token: 46e09f028aadd0d0f7e8aa4d917dc6f053c0a3d9ab0f82aab41f0918acc0384a
