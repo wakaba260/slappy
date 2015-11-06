@@ -1,7 +1,8 @@
 # Slappy
 
 [![Build Status](https://travis-ci.org/wakaba260/slappy.svg?branch=master)](https://travis-ci.org/wakaba260/slappy)
-[![Coverage Status](https://coveralls.io/repos/wakaba260/slappy/badge.svg?branch=master&service=github)](https://coveralls.io/github/wakaba260/slappy?branch=master)
+[![Code Climate](https://codeclimate.com/repos/563cbaad1787d72930000582/badges/9753daa4ecd1a303b6ae/gpa.svg)](https://codeclimate.com/repos/563cbaad1787d72930000582/feed)
+[![Test Coverage](https://codeclimate.com/repos/563cbaad1787d72930000582/badges/9753daa4ecd1a303b6ae/coverage.svg)](https://codeclimate.com/repos/563cbaad1787d72930000582/coverage)
 
 This gem support to make slack bot with hubot like interface.
 Use the Slack Realtime API(see the [official-documentation](https://api.slack.com/rtm)).
