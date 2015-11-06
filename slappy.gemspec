@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'slack_bot/version'
+require 'slappy/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "slack_bot"
-  spec.version       = SlackBot::VERSION
+  spec.name          = "slappy"
+  spec.version       = Slappy::VERSION
   spec.authors       = ["yuemori"]
   spec.email         = ["yuemori@aiming-inc.com"]
 
   spec.summary       = %q{Slack bot maker}
   spec.description   = %q{Simple Slack bot maker. This gem wapper to Slack Realtime API}
-  spec.homepage      = "https://github.com/yuemori/slack_bot"
+  spec.homepage      = "https://github.com/yuemori/slappy"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or

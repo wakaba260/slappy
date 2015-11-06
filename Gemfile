@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in slack_bot.gemspec
+# Specify your gem's dependencies in slappy.gemspec
 gemspec

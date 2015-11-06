@@ -1,8 +1,8 @@
 require 'slack'
-require 'slack_bot/event'
-require 'slack_bot/listener'
+require 'slappy/event'
+require 'slappy/listener'
 
-module SlackBot
+module Slappy
   class Client
     def initialize(token)
       Slack.configure { |config| config.token = token }
