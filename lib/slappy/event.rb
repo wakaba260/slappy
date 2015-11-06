@@ -5,13 +5,13 @@ module Slappy
   class Event
     extend Forwardable
 
-    attr_reader :match_data
+    attr_reader :matches
 
     def_delegators :@data, :method_missing, :respond_to_missing?
 
     def initialize(data, pattern)
       @data = Hashie::Mash.new data
-      @match_data = text.match pattern
+      @matches = text.match pattern
     end
 
     def text

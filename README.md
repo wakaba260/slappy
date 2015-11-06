@@ -50,7 +50,7 @@ end
 
 # called when match message with pattern match
 slappy.hear(/bar (.*)/) do |event|
-  puts event.match_data[1]
+  puts event.matches[1] #=> Event#matches return MatchData object
 end
 
 # event object is slack event JSON (convert to [hashie](https://github.com/intridea/hashie))
