@@ -1,15 +1,17 @@
 language: ruby
 rvm:
-  - 2.2
   - 2.0
-bundler_args: --jobs=2
+  - 2.1
+  - 2.2
+  - ruby-head
 before_install: gem install bundler -v "~> 1.10"
+bundler_args: --jobs=2
+cache: bundler
+before_script:
+  - export CODECLIMATE_REPO_TOKEN=46e09f028aadd0d0f7e8aa4d917dc6f053c0a3d9ab0f82aab41f0918acc0384a
 script:
   - ruby --version
   - bundle exec rspec
 branches:
   only:
     - master
-addons:
-  code_climate:
-    repo_token: 46e09f028aadd0d0f7e8aa4d917dc6f053c0a3d9ab0f82aab41f0918acc0384a
