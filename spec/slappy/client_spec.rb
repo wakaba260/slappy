@@ -42,4 +42,9 @@ describe Slappy::Client do
     subject { client.start }
     it { expect { subject }.not_to raise_error }
   end
+
+  describe '#config' do
+    subject { client.send :config }
+    it { is_expected.to be_instance_of Slappy::Configuration }
+  end
 end
