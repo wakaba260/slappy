@@ -28,7 +28,39 @@ Or install it yourself as:
 Store configuration value in environment variables. They are easy to change between deploys without changing any code.
 
 ```
-SLACK_TOKEN - required
+SLACK_TOKEN - required (when not configured)
+```
+
+Slack API Token generated in [this page](https://api.slack.com/web).
+
+### Configure
+Configure default settings.
+There configrations effect on send message to slack when use `say` method and should override when option given.
+
+#### Example
+
+```ruby
+require 'slappy'
+
+Slappy.configure do |config|
+  config.username   = 'slappy'
+  config.channel    = '#general'
+  config.icon_emoji = ':slappy:'
+end
+
+slappy = Slappy::Client.new
+slappy.say 'hello!' #=> username: slappy, channel: '#general', icon_emoji: ':slappy:'
+```
+
+#### Configuration Parameters
+
+```
+token      - default: ENV['SLACK_TOKEN']
+botname    - not effect now
+username   - default: 'slappy'
+icon_emoji - default: nil
+channel    - default: '#general'
+icon_url   - default: nil
 ```
 
 ### Example Code
@@ -56,8 +88,9 @@ end
 # event object is slack event JSON (convert to [hashie](https://github.com/intridea/hashie))
 slappy.hear(/bar (.*)/) do |event|
   puts event.channel #=> channel id
-  slappy.say 'slappy!', channel: event.channel #=> send message to received message channel
-  slappy.say 'slappy!', channel: '#general' #=> send message to specify channel
+  slappy.say 'slappy!', channel: event.channel #=> to received message channel
+  slappy.say 'slappy!', channel: '#general'
+  slappy.say 'slappy!', username: 'slappy!', icon_emoji: ':slappy:'
 end
 
 slappy.start
@@ -86,7 +119,6 @@ bundle exec rspec
 
 ## Feature
 
-- [ ] Send Message
 - [ ] Support private channel
 - [ ] Support Schedule event (cron like)
 - [ ] Generate template settings
@@ -96,8 +128,11 @@ bundle exec rspec
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/Slappy. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
+1. Fork it ( http://github.com/aki017/slack-ruby-gem/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 ## License
 
