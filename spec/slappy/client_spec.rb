@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe Slappy::Client do
-  let(:client) { Slappy::Client.new(token) }
-  let(:token)  { ENV['SLACK_TOKEN'] }
+  let(:client) { Slappy::Client.new }
 
   describe '#hear' do
     before { size.times { client.hear(regexp) { puts 'hear' } } }
