@@ -3,7 +3,7 @@ AllCops:
     - "vendor/**/*"
     - "Gemfile"
     - "Guardfile"
-    - "slack_bot.gemspec"
+    - "slappy.gemspec"
   DisplayCopNames: true
 
 ##################### Style ##################################

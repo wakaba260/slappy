@@ -1,7 +1,7 @@
-# SlackBot
+# Slappy
 
-[![Build Status](https://travis-ci.org/wakaba260/slack_bot.svg)](https://travis-ci.org/wakaba260/slack_bot)
-[![Coverage Status](https://coveralls.io/repos/wakaba260/slack_bot/badge.svg?branch=master&service=github)](https://coveralls.io/github/wakaba260/slack_bot?branch=master)
+[![Build Status](https://travis-ci.org/wakaba260/Slappy.svg)](https://travis-ci.org/wakaba260/slappy)
+[![Coverage Status](https://coveralls.io/repos/wakaba260/slappy/badge.svg?branch=master&service=github)](https://coveralls.io/github/wakaba260/slappy?branch=master)
 
 This gem support to make slack bot with hubot like interface.
 Use the Slack Realtime API(see the [official-documentation](https://api.slack.com/rtm)).
@@ -11,7 +11,7 @@ Use the Slack Realtime API(see the [official-documentation](https://api.slack.co
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'slack_bot'
+gem 'slappy'
 ```
 
 And then execute:
@@ -20,32 +20,32 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install slack_bot
+    $ gem install slappy
 
 ## Usage
 
 ```ruby
-require 'slack_bot'
+require 'slappy'
 
-robot = SlackBot::Client.new(ENV['SLACK_TOKEN'])
+slappy = Slappy::Client.new(ENV['SLACK_TOKEN'])
 
 # called when start up
-robot.hello do
+slappy.hello do
   puts 'successfly connected'
 end
 
 # called when match message
-robot.hear(/foo/) do
+slappy.hear(/foo/) do
   puts 'foo'
 end
 
 # called when match message with pattern match
-robot.hear(/bar (.*)/) do |event|
+slappy.hear(/bar (.*)/) do |event|
   puts event.match_data[1]
 end
 
 # event object is slack event JSON (convert to [hashie](https://github.com/intridea/hashie))
-robot.hear(/bar (.*)/) do |event|
+slappy.hear(/bar (.*)/) do |event|
   puts event.channel #=> channel
   puts event.match_data[1] #=> event.text.match(pattern) value
 end
@@ -86,7 +86,7 @@ bundle exec rspec
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/slack_bot. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/Slappy. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
