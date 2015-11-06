@@ -1,6 +1,6 @@
 # Slappy
 
-[![Build Status](https://travis-ci.org/wakaba260/Slappy.svg)](https://travis-ci.org/wakaba260/slappy)
+[![Build Status](https://travis-ci.org/wakaba260/slappy.svg?branch=master)](https://travis-ci.org/wakaba260/slappy)
 [![Coverage Status](https://coveralls.io/repos/wakaba260/slappy/badge.svg?branch=master&service=github)](https://coveralls.io/github/wakaba260/slappy?branch=master)
 
 This gem support to make slack bot with hubot like interface.
