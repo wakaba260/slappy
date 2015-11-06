@@ -36,10 +36,21 @@ module Slappy
       @listeners[:message].push Listener.new(regexp, block)
     end
 
+    def say(text, options = {})
+      options[:text] = text
+      params = merge_send_params options
+      Slack.chat_postMessage params
+    end
+
     private
 
     def config
       Slappy.configuration
+    end
+
+    def merge_send_params(options)
+      default = config.send_params
+      default.merge options
     end
   end
 end

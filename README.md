@@ -55,11 +55,12 @@ end
 
 # event object is slack event JSON (convert to [hashie](https://github.com/intridea/hashie))
 slappy.hear(/bar (.*)/) do |event|
-  puts event.channel #=> channel
-  puts event.match_data[1] #=> event.text.match(pattern) value
+  puts event.channel #=> channel id
+  slappy.say 'slappy!', channel: event.channel #=> send message to received message channel
+  slappy.say 'slappy!', channel: '#general' #=> send message to specify channel
 end
 
-robot.start
+slappy.start
 ```
 
 ## How to run tests
