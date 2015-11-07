@@ -21,12 +21,26 @@ describe Slappy do
   end
 
   describe '.method_missing' do
-    subject { Slappy.hello { puts 'hello' } }
-    it { expect { subject }.not_to raise_error }
+    context 'when client method call' do
+      subject { Slappy.hello { puts 'hello' } }
+      it { expect { subject }.not_to raise_error }
+    end
+
+    context 'when undefined method call' do
+      subject { Slappy.undefined_method { puts 'hello' } }
+      it { expect { subject }.to raise_error NoMethodError }
+    end
   end
 
   describe '.respond_to?' do
-    subject { Slappy.respond_to? :hello }
-    it { expect { subject }.not_to raise_error }
+    context 'when client method call' do
+      subject { Slappy.respond_to? :hello }
+      it { is_expected.to be_truthy }
+    end
+
+    context 'when undefined method call' do
+      subject { Slappy.respond_to? :undefined_method }
+      it { is_expected.to be_falsy }
+    end
   end
 end
