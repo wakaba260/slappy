@@ -18,17 +18,19 @@ module Slappy
       @configuration || configure
     end
 
-    def slappy
-      @client ||= Client.new
-    end
-
     def method_missing(method, *args, &block)
-      return super unless slappy.respond_to?(method)
-      slappy.send(method, *args, &block)
+      return super unless client.respond_to?(method)
+      client.send(method, *args, &block)
     end
 
     def respond_to?(method)
-      slappy.respond_to?(method) || super
+      client.respond_to?(method) || super
+    end
+
+    private
+
+    def client
+      @client ||= Client.new
     end
   end
 end
