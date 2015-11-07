@@ -8,7 +8,7 @@
 
 This gem support to make slack bot, inspire from [hubot](https://github.com/github/hubot) and [sinatra](https://github.com/sinatra/sinatra).
 
-Use the Slack Realtime API(see the [official-documentation](https://api.slack.com/rtm)).
+Use the Slack Realtime API and Web API(see the [official-documentation](https://api.slack.com)).
 
 ## Installation
 
