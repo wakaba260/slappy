@@ -12,18 +12,17 @@ Use the Slack Realtime API and Web API(see the [official-documentation](https://
 
 ## Quick Start
 
-1. Generate Slack API Token
+### 1. Generate Slack API Token
 
 Slack API Token generate from [official page](https://api.slack.com/web).
 
-2. Set environment variable to Slack API Token
+### 2. Set environment variable to Slack API Token
 
-Slappy references ENV['SLACK_TOKEN'] when use token.
+Slappy references `ENV['SLACK_TOKEN']` when use token.
 
 (If you want to setting in code, we offer way to you).
 
-
-3. Written Code
+### 3. Written Code
 
 ```ruby
 require 'slappy'
