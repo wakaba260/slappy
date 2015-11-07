@@ -5,6 +5,8 @@ require 'slappy/configuration'
 
 module Slappy
   class Client
+    attr_reader :start_time
+
     def initialize
       Slack.configure { |slack| slack.token = config.token }
       @callbacks = {}
@@ -15,6 +17,7 @@ module Slappy
     end
 
     def start
+      @start_time = Time.now
       @callbacks.each do |event_name, listeners|
         register_event event_name, listeners
       end
