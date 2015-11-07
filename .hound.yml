@@ -5,6 +5,7 @@ AllCops:
     - "Guardfile"
     - "slappy.gemspec"
   DisplayCopNames: true
+  RunRailsCops: false
 
 ##################### Style ##################################
 
