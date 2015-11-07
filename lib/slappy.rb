@@ -17,5 +17,18 @@ module Slappy
     def configuration
       @configuration || configure
     end
+
+    def client
+      @client ||= Client.new
+    end
+
+    def method_missing(method, *args, &block)
+      return super unless client.respond_to?(method)
+      client.send(method, *args, &block)
+    end
+
+    def respond_to?(method)
+      client.respond_to?(method) || super
+    end
   end
 end

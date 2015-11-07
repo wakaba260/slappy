@@ -50,8 +50,7 @@ Slappy.configure do |config|
   config.icon_emoji = ':slappy:'
 end
 
-slappy = Slappy::Client.new
-slappy.say 'hello!' #=> username: slappy, channel: '#general', icon_emoji: ':slappy:'
+Slappy.say 'hello!' #=> username: slappy, channel: '#general', icon_emoji: ':slappy:'
 ```
 
 #### Configuration Parameters
@@ -70,32 +69,30 @@ icon_url   - default: nil
 ```ruby
 require 'slappy'
 
-slappy = Slappy::Client.new
-
 # called when start up
-slappy.hello do
+Slappy.hello do
   puts 'successfly connected'
 end
 
 # called when match message
-slappy.hear(/foo/) do
+Slappy.hear(/foo/) do
   puts 'foo'
 end
 
 # called when match message with pattern match
-slappy.hear(/bar (.*)/) do |event|
+Slappy.hear(/bar (.*)/) do |event|
   puts event.matches[1] #=> Event#matches return MatchData object
 end
 
 # event object is slack event JSON (convert to [hashie](https://github.com/intridea/hashie))
-slappy.hear(/bar (.*)/) do |event|
+Slappy.hear(/bar (.*)/) do |event|
   puts event.channel #=> channel id
-  slappy.say 'slappy!', channel: event.channel #=> to received message channel
-  slappy.say 'slappy!', channel: '#general'
-  slappy.say 'slappy!', username: 'slappy!', icon_emoji: ':slappy:'
+  Slappy.say 'slappy!', channel: event.channel #=> to received message channel
+  Slappy.say 'slappy!', channel: '#general'
+  Slappy.say 'slappy!', username: 'slappy!', icon_emoji: ':slappy:'
 end
 
-slappy.start
+Slappy.start
 ```
 
 ## How to run tests
