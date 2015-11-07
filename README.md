@@ -25,7 +25,7 @@ Slappy references ENV['SLACK_TOKEN'] when use token.
 
 3. Written Code
 
-```
+```ruby
 require 'slappy'
 require 'slappy/dsl'
 
@@ -139,27 +139,6 @@ hear 'foo' do
 end
 
 start
-```
-
-## How to run tests
-
-Please create a file named .env on the root of this repository. You can use .env.example file as a template
-
-```
-cp .env.example .env
-```
-
-and edit `.env` file properly.
-
-```
-SLACK_TOKEN=abcd-1234567890-1234567890-1234567890
-```
-
-Then run tests.
-
-```
-bundle install
-bundle exec rspec
 ```
 
 ## Feature
