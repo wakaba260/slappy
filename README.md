@@ -65,8 +65,7 @@ channel    - default: '#general'
 icon_url   - default: nil
 ```
 
-### Example
-#### Basic
+### Example Code
 
 ```ruby
 require 'slappy'
@@ -100,22 +99,6 @@ Slappy.hear /^foobar/ do
 end
 
 Slappy.start
-```
-
-#### Use Slappy DSL
-
-Please require `'slappy/dsl'`, if you want short code
-
-```ruby
-require 'slappy'
-require 'slappy/dsl'
-
-# Omit 'Slappy' keyward, when delegator required
-hear 'foo' do
-  say 'slappy!'
-end
-
-start
 ```
 
 ## How to run tests
