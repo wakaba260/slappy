@@ -7,6 +7,7 @@ module Slappy
     end
 
     def call(event)
+      return unless Time.at(event.ts.to_f) > Slappy.start_time
       return unless event.text.match @regexp
       @callback.call(event)
     end

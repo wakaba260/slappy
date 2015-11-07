@@ -13,7 +13,7 @@ describe Slappy::Client do
 
   describe '#hear' do
     before { size.times { client.hear(regexp) { puts 'hear' } } }
-    subject { client.instance_variable_get(:@listeners)[:message] }
+    subject { client.instance_variable_get(:@callbacks)[:message] }
     let(:regexp) { /test/ }
     let(:size)   { 3 }
 
@@ -24,7 +24,7 @@ describe Slappy::Client do
 
   describe '#hello' do
     before { size.times { client.hello { puts 'hello' } } }
-    subject { client.instance_variable_get(:@listeners)[:hello] }
+    subject { client.instance_variable_get(:@callbacks)[:hello] }
     let(:regexp) { /test/ }
     let(:size)   { 2 }
 
