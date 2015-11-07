@@ -7,7 +7,7 @@ module Slappy
   class Client
     def initialize
       Slack.configure { |slack| slack.token = config.token }
-      @listeners = {}
+      @callbacks = {}
     end
 
     def client
@@ -15,25 +15,20 @@ module Slappy
     end
 
     def start
-      @listeners.each do |key, array|
-        client.on key do |data|
-          array.each do |listener|
-            event = Event.new(data, listener.pattern) if key == :message
-            listener.call(event)
-          end
-        end
+      @callbacks.each do |event_name, listeners|
+        register_event event_name, listeners
       end
       client.start
     end
 
     def hello(&block)
-      @listeners[:hello] ||= []
-      @listeners[:hello].push block
+      @callbacks[:hello] ||= []
+      @callbacks[:hello].push block
     end
 
     def hear(pattern, &block)
-      @listeners[:message] ||= []
-      @listeners[:message].push Listener.new(pattern, block)
+      @callbacks[:message] ||= []
+      @callbacks[:message].push Listener.new(pattern, block)
     end
 
     def say(text, options = {})
@@ -43,6 +38,20 @@ module Slappy
     end
 
     private
+
+    def register_event(event_name, listeners)
+      client.on event_name do |data|
+        listeners.each do |listener|
+          case event_name
+          when :hello
+            listener.call
+          when :message
+            event = Event.new(data, listener.pattern)
+            listener.call(event)
+          end
+        end
+      end
+    end
 
     def config
       Slappy.configuration
