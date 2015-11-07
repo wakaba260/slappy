@@ -31,9 +31,9 @@ module Slappy
       @listeners[:hello].push block
     end
 
-    def hear(regexp, &block)
+    def hear(pattern, &block)
       @listeners[:message] ||= []
-      @listeners[:message].push Listener.new(regexp, block)
+      @listeners[:message].push Listener.new(pattern, block)
     end
 
     def say(text, options = {})
