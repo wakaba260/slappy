@@ -1,5 +1,7 @@
 require 'slappy/client'
 require 'slappy/configuration'
+require 'slappy/event'
+require 'slappy/listener'
 require 'slappy/version'
 
 module Slappy
