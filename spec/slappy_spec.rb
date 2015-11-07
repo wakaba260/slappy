@@ -19,4 +19,14 @@ describe Slappy do
       it { expect(Slappy.configuration.token).to eq token }
     end
   end
+
+  describe '.method_missing' do
+    subject { Slappy.hello { puts 'hello' } }
+    it { expect { subject }.not_to raise_error }
+  end
+
+  describe '.respond_to?' do
+    subject { Slappy.respond_to? :hello }
+    it { expect { subject }.not_to raise_error }
+  end
 end
