@@ -10,6 +10,31 @@ This gem support to make slack bot, inspire from [hubot](https://github.com/gith
 
 Use the Slack Realtime API and Web API(see the [official-documentation](https://api.slack.com)).
 
+## Quick Start
+
+1. Generate Slack API Token
+
+Slack API Token generate from [official page](https://api.slack.com/web).
+
+2. Set environment variable to Slack API Token
+
+Slappy references ENV['SLACK_TOKEN'] when use token.
+
+(If you want to setting in code, we offer way to you).
+
+
+3. Written Code
+
+```
+require 'slappy'
+require 'slappy/dsl'
+
+# catch pattern
+hear '^hello, slappy!' do |event|
+  say 'hello!!', channel: event.channel #=> respond message to channel
+end
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -33,8 +58,6 @@ Store configuration value in environment variables. They are easy to change betw
 ```
 SLACK_TOKEN - required (when not configured)
 ```
-
-Slack API Token generated in [this page](https://api.slack.com/web).
 
 ### Configure
 Configure default settings.
