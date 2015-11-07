@@ -143,18 +143,12 @@ start
 
 ## Feature
 
-- [ ] DSL
-```
-hear 'foo' do
-  puts 'slappy!'
-end
-```
 - [ ] Support private channel
 - [ ] Support Schedule event (cron like)
 - [ ] Generate template settings
 - [ ] CLI commands
 - [ ] Add bot name
-- [ ] client#respond (hubot#respond)
+- [ ] client#respond (hubot#respond like)
 
 ## Contributing
 
