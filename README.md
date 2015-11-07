@@ -75,21 +75,26 @@ Slappy.hello do
 end
 
 # called when match message
-Slappy.hear(/foo/) do
+Slappy.hear 'foo' do
   puts 'foo'
 end
 
-# called when match message with pattern match
-Slappy.hear(/bar (.*)/) do |event|
+# use regexp in string literal
+Slappy.hear 'bar (.*)' do |event|
   puts event.matches[1] #=> Event#matches return MatchData object
 end
 
-# event object is slack event JSON (convert to [hashie](https://github.com/intridea/hashie))
-Slappy.hear(/bar (.*)/) do |event|
+# event object is slack event JSON (convert to Hashie::Mash)
+Slappy.hear '^bar (.*)' do |event|
   puts event.channel #=> channel id
   Slappy.say 'slappy!', channel: event.channel #=> to received message channel
   Slappy.say 'slappy!', channel: '#general'
   Slappy.say 'slappy!', username: 'slappy!', icon_emoji: ':slappy:'
+end
+
+# use regexp literal
+Slappy.hear /^foobar/ do
+  puts 'slappppy!'
 end
 
 Slappy.start
@@ -118,6 +123,12 @@ bundle exec rspec
 
 ## Feature
 
+- [ ] DSL
+```
+hear 'foo' do
+  puts 'slappy!'
+end
+```
 - [ ] Support private channel
 - [ ] Support Schedule event (cron like)
 - [ ] Generate template settings
