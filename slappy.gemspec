@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["yuemori@aiming-inc.com"]
 
   spec.summary       = %q{Simple Slack Bot Framework}
-  spec.description   = %q{Simple Slack Bot Framework. Use Slack RealTime API}
+  spec.description   = %q{Simple Slack Bot Framework. Use Slack RealTime API and Web API.}
   spec.homepage      = "https://github.com/yuemori/slappy"
   spec.license       = "MIT"
 
