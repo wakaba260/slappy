@@ -18,9 +18,7 @@ Slack API Token generate from [official page](https://api.slack.com/web).
 
 ### 2. Set environment variable to Slack API Token
 
-Slappy references `ENV['SLACK_TOKEN']` when use token.
-
-(If you want to setting in code, we offer way to you).
+Slappy references `ENV['SLACK_TOKEN']` default.
 
 ### 3. Run generator
 
@@ -30,15 +28,15 @@ Execute then command to generate project:
     $ slappy new project-name
 
 
-Or want current directory, execute then command:
+If you want to use current directory, execute then command:
 
     $ slappy new
 
 (If you use bundler, add `bundle exec` prefix)
 
-### 4. Written code
+### 4. Write code
 
-Create file to under `project-name/slappy-scripts`, and written code.
+Create ruby file to under `project-name/slappy-scripts`, and written code.
 
 Example:
 
@@ -48,6 +46,8 @@ hear '^hello, slappy!' do |event|
   say 'hello!!', channel: event.channel #=> respond message to channel
 end
 ```
+
+There scripts not share scopes with other scripts.
 
 ### 5. Slappy start
 
