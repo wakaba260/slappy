@@ -1,8 +1,6 @@
-require 'slappy/client'
-require 'slappy/configuration'
-require 'slappy/event'
-require 'slappy/listener'
-require 'slappy/version'
+require 'forwardable'
+require 'hashie'
+require 'slack'
 
 module Slappy
   class << self
@@ -36,3 +34,9 @@ module Slappy
     end
   end
 end
+
+require 'slappy/client'
+require 'slappy/configuration'
+require 'slappy/event'
+require 'slappy/listener'
+require 'slappy/version'

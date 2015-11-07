@@ -1,5 +1,3 @@
-require 'forwardable'
-
 module Slappy
   module DSL
     extend Forwardable
