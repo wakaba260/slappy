@@ -8,6 +8,28 @@ describe Slappy::Listener do
   let(:event)    { Slappy::Event.new(data, pattern) }
   let(:data)     { { 'text' => 'test' } }
 
+  describe '#pattern' do
+    let(:regexp) { /^test/ }
+
+    context 'when regexp given' do
+      subject { listener.pattern }
+      let(:pattern) { /^test/ }
+
+      it 'should be return regexp' do
+        is_expected.to eq regexp
+      end
+    end
+
+    context 'when string given' do
+      subject { listener.pattern }
+      let(:pattern) { '^test' }
+
+      it 'should be return regexp' do
+        is_expected.to eq regexp
+      end
+    end
+  end
+
   describe '#call' do
     context 'when match pattern' do
       subject { listener.call(event) }

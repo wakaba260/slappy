@@ -1,7 +1,8 @@
 module Slappy
   class Listener
-    def initialize(regexp, callback)
-      @regexp = regexp
+    def initialize(pattern, callback)
+      pattern = /#{pattern}/ if pattern.is_a? String
+      @regexp = pattern
       @callback = callback
     end
 
