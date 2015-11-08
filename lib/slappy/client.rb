@@ -21,6 +21,7 @@ module Slappy
       @callbacks.each do |event_name, listeners|
         register_event event_name, listeners
       end
+      set_signal_trap
       client.start
     end
 
@@ -41,6 +42,14 @@ module Slappy
     end
 
     private
+
+    def set_signal_trap
+      [:TERM, :INT].each do |signal|
+        Signal.trap(signal) do
+          EventMachine.stop
+        end
+      end
+    end
 
     def register_event(event_name, listeners)
       client.on event_name do |data|
