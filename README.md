@@ -22,19 +22,40 @@ Slappy references `ENV['SLACK_TOKEN']` when use token.
 
 (If you want to setting in code, we offer way to you).
 
-### 3. Written Code
+### 3. Run generator
+
+Execute then command to generate project:
+
+
+    $ slappy new project-name
+
+
+Or want current directory, execute then command:
+
+    $ slappy new
+
+(If you use bundler, add `bundle exec` prefix)
+
+### 4. Written code
+
+Create file to under `project-name/slappy-scripts`, and written code.
+
+Example:
 
 ```ruby
-require 'slappy'
-require 'slappy/dsl'
-
 # catch pattern
 hear '^hello, slappy!' do |event|
   say 'hello!!', channel: event.channel #=> respond message to channel
 end
-
-start
 ```
+
+### 5. Slappy start
+
+Execute then command in project root directory.
+
+    $ slappy start
+
+(Stop: Input Ctrl+c)
 
 ## Installation
 
@@ -92,8 +113,9 @@ robot.channel    - default: '#general'
 robot.icon_url   - default: nil
 ```
 
-### Example
-#### Basic
+### Basic Usage
+
+If you not want execute `slappy start` command, written by (require `'slappy/dsl'` use DSL):
 
 ```ruby
 require 'slappy'
@@ -126,33 +148,17 @@ Slappy.hear /^foobar/ do
   puts 'slappppy!'
 end
 
-Slappy.start
-```
-
-#### Use Slappy DSL
-
-Please require `'slappy/dsl'`, if you want short code
-
-```ruby
-require 'slappy'
-require 'slappy/dsl'
-
-# Omit 'Slappy' keyward, when delegator required
-hear 'foo' do
-  say 'slappy!'
-end
-
-start
+Slappy.start #=> Start slappy process
 ```
 
 ## Feature
 
+- [ ] Execute in shell (because testable).
 - [ ] Support private channel
 - [ ] Support Schedule event (cron like)
-- [ ] Generate template settings
-- [ ] CLI commands
 - [ ] Add bot name
 - [ ] client#respond (hubot#respond like)
+- [ ] Split chat adapter
 
 ## Contributing
 
