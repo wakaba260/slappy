@@ -1,21 +1,30 @@
 module Slappy
   class Configuration
-    attr_accessor :username, :botname, :token, :icon_emoji, :channel, :icon_url
+    attr_accessor :robot, :token, :scripts_dir_path
 
-    def botname
-      @botname || username
+    def initialize
+      @robot = Robot.new
     end
 
     def token
       @token || ENV['SLACK_TOKEN']
     end
 
-    def username
-      @username || 'slappy'
+    def config_file_path
+      './slappy_config.rb'
+    end
+
+    def scripts_dir_path
+      @scripts_dir_path || './slappy-scripts'
     end
 
     def send_params
-      { username: username, icon_emoji: icon_emoji, channel: channel, icon_url: icon_url }
+      {
+        username: robot.username,
+        icon_emoji: robot.icon_emoji,
+        channel: robot.channel,
+        icon_url: robot.icon_url
+      }
     end
   end
 end

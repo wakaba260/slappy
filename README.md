@@ -70,9 +70,10 @@ There configrations effect on send message to slack when use `say` method and sh
 require 'slappy'
 
 Slappy.configure do |config|
-  config.username   = 'slappy'
-  config.channel    = '#general'
-  config.icon_emoji = ':slappy:'
+  config.token = 'foobar'
+  config.robot.username   = 'slappy'
+  config.robot.channel    = '#general'
+  config.robot.icon_emoji = ':slappy:'
 end
 
 Slappy.say 'hello!' #=> username: slappy, channel: '#general', icon_emoji: ':slappy:'
@@ -81,12 +82,14 @@ Slappy.say 'hello!' #=> username: slappy, channel: '#general', icon_emoji: ':sla
 #### Configuration Parameters
 
 ```
-token      - default: ENV['SLACK_TOKEN']
-botname    - not effect now
-username   - default: 'slappy'
-icon_emoji - default: nil
-channel    - default: '#general'
-icon_url   - default: nil
+token            - default: ENV['SLACK_TOKEN']
+scripts_dir_path - default : 'slappy-scripts'
+
+robot.botname    - not effect now
+robot.username   - default: 'slappy'
+robot.icon_emoji - default: nil
+robot.channel    - default: '#general'
+robot.icon_url   - default: nil
 ```
 
 ### Example

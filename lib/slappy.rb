@@ -37,6 +37,7 @@ end
 
 require 'slappy/client'
 require 'slappy/configuration'
+require 'slappy/configuration/robot'
 require 'slappy/event'
 require 'slappy/listener'
 require 'slappy/version'
