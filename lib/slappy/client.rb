@@ -1,8 +1,3 @@
-require 'slack'
-require 'slappy/event'
-require 'slappy/listener'
-require 'slappy/configuration'
-
 module Slappy
   class Client
     attr_reader :start_time

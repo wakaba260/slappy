@@ -32,6 +32,8 @@ require 'slappy/dsl'
 hear '^hello, slappy!' do |event|
   say 'hello!!', channel: event.channel #=> respond message to channel
 end
+
+start
 ```
 
 ## Installation
@@ -151,7 +153,7 @@ start
 
 ## Contributing
 
-1. Fork it ( http://github.com/aki017/slack-ruby-gem/fork )
+1. Fork it ( http://github.com/yuemori/slappy/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

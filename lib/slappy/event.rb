@@ -1,6 +1,3 @@
-require 'hashie'
-require 'forwardable'
-
 module Slappy
   class Event
     extend Forwardable
