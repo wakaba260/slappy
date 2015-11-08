@@ -20,6 +20,9 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'slack-api'
   spec.add_dependency 'hashie'
+  spec.add_dependency 'thor'
+  spec.add_dependency "activesupport"
+  spec.add_dependency "termcolor"
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
@@ -29,5 +32,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard-rubocop"
   spec.add_development_dependency "codeclimate-test-reporter"
   spec.add_development_dependency "timecop"
-  spec.add_development_dependency "activesupport"
 end

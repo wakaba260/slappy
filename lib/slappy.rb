@@ -1,6 +1,9 @@
 require 'forwardable'
+require 'active_support/core_ext/string/inflections'
 require 'hashie'
 require 'slack'
+require 'termcolor'
+require 'thor'
 
 module Slappy
   class << self
@@ -35,9 +38,11 @@ module Slappy
   end
 end
 
+require 'slappy/cli'
 require 'slappy/client'
 require 'slappy/configuration'
 require 'slappy/configuration/robot'
+require 'slappy/commands/generator.rb'
 require 'slappy/event'
 require 'slappy/listener'
 require 'slappy/version'
