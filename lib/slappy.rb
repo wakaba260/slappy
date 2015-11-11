@@ -4,6 +4,7 @@ require 'hashie'
 require 'slack'
 require 'termcolor'
 require 'thor'
+require 'logger'
 
 module Slappy
   class << self
@@ -19,6 +20,10 @@ module Slappy
 
     def configuration
       @configuration || configure
+    end
+
+    def logger
+      configuration.logger
     end
 
     def method_missing(method, *args, &block)
