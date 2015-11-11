@@ -12,6 +12,15 @@ Slappy.configure do |config|
   #   Slappy load scripts in this directory.
   config.scripts_dir_path = 'slappy-scripts'
 
+  # logger:
+  #   Use logger object.
+  #   Please specify logger instance.
+  config.logger = Logger.new(STDOUT)
+
+  # logger.level:
+  #   Specify logger level.
+  config.logger.level = Logger::INFO
+
   ## Default parameters
   #
   # There parameters use in say method when send to Slack.
