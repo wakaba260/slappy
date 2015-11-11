@@ -5,7 +5,7 @@ include Slappy
 describe Slappy::Commands::Run do
   let(:run_command) { Commands::Run.new }
   let(:current_dir) { File.dirname(__FILE__) }
-  let(:load_dir)  { File.expand_path '../../files/', current_dir }
+  let(:load_dir) { File.expand_path '../../files/', current_dir }
   let(:error_class) { Commands::Run::InvalidPathError }
   let(:file_path) { File.expand_path file_name, load_dir }
   let(:file_name) { 'dummy.rb' }
