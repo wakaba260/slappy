@@ -1,9 +1,17 @@
 module Slappy
   class Configuration
-    attr_accessor :robot, :token, :scripts_dir_path
+    attr_accessor :robot, :token, :scripts_dir_path, :logger
 
     def initialize
       @robot = Robot.new
+    end
+
+    def logger
+      unless @logger
+        @logger = Logger.new(STDOUT)
+        @logger.level = Logger::INFO
+      end
+      @logger
     end
 
     def token

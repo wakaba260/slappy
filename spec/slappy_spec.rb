@@ -43,4 +43,10 @@ describe Slappy do
       it { is_expected.to be_falsy }
     end
   end
+
+  describe '.logger' do
+    subject { Slappy.logger }
+    let(:logger) { Logger }
+    it { is_expected.to be_instance_of logger }
+  end
 end
