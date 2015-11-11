@@ -1,6 +1,6 @@
 module Slappy
   class Configuration
-    attr_accessor :robot, :token, :scripts_dir_path, :logger
+    attr_accessor :robot, :token, :scripts_dir_path, :lib_dir_path, :logger
 
     def initialize
       @robot = Robot.new
@@ -20,6 +20,10 @@ module Slappy
 
     def config_file_path
       './slappy_config.rb'
+    end
+
+    def lib_dir_path
+      @lib_dir_path || './lib'
     end
 
     def scripts_dir_path
