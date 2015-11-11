@@ -10,6 +10,11 @@ module Slappy
       build_command(:generator).call(dir_name)
     end
 
+    desc 'version', 'show version number'
+    def version
+      puts Slappy::VERSION
+    end
+
     private
 
     def build_command(command_name)
