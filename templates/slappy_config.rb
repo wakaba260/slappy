@@ -5,12 +5,14 @@ Slappy.configure do |config|
   #
   # token:
   #   Slack API Token
-  config.token = ENV['SLACK_TOKEN']
+  #
+  # config.token = ENV['SLACK_TOKEN']
 
   # scripts_path_dir:
   #   Slappy scripts directory.
   #   Slappy load scripts in this directory.
-  config.scripts_dir_path = 'slappy-scripts'
+  #
+  # config.scripts_dir_path = 'slappy-scripts'
 
   ## Default parameters
   #
@@ -23,18 +25,22 @@ Slappy.configure do |config|
 
   # username:
   #   Name of bot.
-  config.robot.username = 'slappy'
+  #
+  # config.robot.username = 'slappy'
 
   # channel:
   #   Channel, private group, or IM channel to send message to.
   #   Can be an encoded ID, or a name. See below for more details.
-  config.robot.channel = nil
+  #
+  # config.robot.channel = nil
 
   # icon_emoji:
   #   emoji to use as the icon for this message. Overrides icon_url.
-  config.robot.icon_emoji = nil
+  #
+  # config.robot.icon_emoji = nil
 
   # icon_url:
   #    URL to an image to use as the icon for this message
-  config.robot.icon_url = nil
+  #
+  # config.robot.icon_url = nil
 end
