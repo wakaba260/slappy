@@ -39,6 +39,7 @@ describe Slappy::Commands::Run do
 
   shared_examples_for 'load_dir' do
     subject { run_command.send load_dir_method }
+    let(:not_exist_dir) { File.expand_path '../../notfound/', current_dir }
 
     context 'when exist path given' do
       it { expect { subject }.not_to raise_error }
@@ -55,14 +56,12 @@ describe Slappy::Commands::Run do
   describe '#load_scripts' do
     let(:load_dir_method) { :load_scripts }
     let(:config_dir_method) { :scripts_dir_path= }
-    let(:not_exist_dir) { File.expand_path '../../notfound/', current_dir }
     it_behaves_like 'load_dir'
   end
 
   describe '#load_libs' do
     let(:load_dir_method) { :load_libs }
     let(:config_dir_method) { :lib_dir_path= }
-    let(:not_exist_dir) { File.expand_path '../../notfound/', current_dir }
     it_behaves_like 'load_dir'
   end
 end
