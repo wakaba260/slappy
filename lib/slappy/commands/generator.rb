@@ -8,6 +8,7 @@ module Slappy
 
         mkdir target_dir unless @target_dir.nil?
         mkdir scripts_dir_path
+        mkdir lib_dir_path
 
         copy template_script_path, scripts_dir_path
         copy config_file_path,     target_dir
@@ -25,6 +26,10 @@ module Slappy
 
       def template_dir
         File.expand_path 'templates', gem_root_dir
+      end
+
+      def lib_dir_path
+        File.expand_path Slappy.configuration.lib_dir_path, target_dir
       end
 
       def scripts_dir_path
