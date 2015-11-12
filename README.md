@@ -152,6 +152,27 @@ end
 Slappy.start #=> Start slappy process
 ```
 
+## Release Note
+
+- v0.4.0
+  - support logger
+  - load lib directory
+  - new command
+    - version
+
+- v0.3.0
+  - introduce DSL
+  - introduce CLI commands
+    - start
+    - new
+  - use String literal for hear parameter
+
+- v0.2.0
+  - modify interface
+
+- v0.1.0
+  - release
+
 ## Feature
 
 - [ ] Execute in shell (because testable).
