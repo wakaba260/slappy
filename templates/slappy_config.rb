@@ -14,12 +14,20 @@ Slappy.configure do |config|
 
   # logger:
   #   Use logger object.
-  #   Please specify logger instance.
+  #
   # config.logger = Logger.new(STDOUT)
 
   # logger.level:
   #   Specify logger level.
+  #
   # config.logger.level = Logger::INFO
+
+  # dsl:
+  #   use dsl
+  #
+  #   param: :enabled or :disabled
+  #
+  # config.dsl = :enabled
 
   ## Default parameters
   #

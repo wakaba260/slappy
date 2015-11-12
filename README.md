@@ -159,6 +159,7 @@ Slappy.start #=> Start slappy process
   - Support load lib directory
   - Add New command
     - version
+  - Choise dsl enabled in slappy_config
 
 - v0.3.0
   - Introduce DSL

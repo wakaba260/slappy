@@ -4,6 +4,7 @@ module Slappy
       class InvalidPathError < StandardError; end
 
       def call
+        load_dsl
         load_config
         load_libs
         load_scripts
@@ -13,6 +14,11 @@ module Slappy
       end
 
       private
+
+      def load_dsl
+        return if Slappy.configuration.dsl == :disabled
+        require 'slappy/dsl'
+      end
 
       def load_config
         file = File.expand_path Slappy.configuration.config_file_path, Dir.pwd

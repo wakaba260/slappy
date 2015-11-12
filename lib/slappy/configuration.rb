@@ -30,6 +30,14 @@ module Slappy
       @scripts_dir_path || './slappy-scripts'
     end
 
+    def dsl
+      @dsl || :enabled
+    end
+
+    def dsl=(symbol)
+      fail ArgumentError if [:enabled, :disabled].include? symbol
+    end
+
     def send_params
       {
         username: robot.username,
