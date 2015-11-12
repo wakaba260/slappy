@@ -155,23 +155,24 @@ Slappy.start #=> Start slappy process
 ## Release Note
 
 - v0.4.0
-  - support logger
-  - load lib directory
-  - new command
+  - Support logger
+  - Support load lib directory
+  - Add New command
     - version
 
 - v0.3.0
-  - introduce DSL
-  - introduce CLI commands
+  - Introduce DSL
+  - Introduce CLI commands
     - start
     - new
-  - use String literal for hear parameter
+  - Use String literal for hear parameter
+  - Chose dsl use in slappy_config
 
 - v0.2.0
-  - modify interface
+  - Modify interface
 
 - v0.1.0
-  - release
+  - Release
 
 ## Feature
 
