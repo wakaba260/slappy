@@ -4,10 +4,14 @@ require 'hashie'
 require 'slack'
 require 'termcolor'
 require 'thor'
+require 'logger'
 
 module Slappy
   class << self
-    @configuration = nil
+    extend Forwardable
+
+    def_delegators :configuration, :logger
+    def_delegators :client, :start, :hello, :hear, :say
 
     def configure
       @configuration = Configuration.new
@@ -20,17 +24,6 @@ module Slappy
     def configuration
       @configuration || configure
     end
-
-    def method_missing(method, *args, &block)
-      return super unless client.respond_to?(method)
-      client.send(method, *args, &block)
-    end
-
-    def respond_to?(method)
-      client.respond_to?(method) || super
-    end
-
-    private
 
     def client
       @client ||= Client.new

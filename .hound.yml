@@ -15,6 +15,12 @@ Style/Documentation:
 Style/StringLiterals:
   EnforcedStyle: single_quotes
 
+##################### Lint ##################################
+
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'templates/slappy_config.rb'
+
 ##################### Metrics ##################################
 
 Metrics/AbcSize:
