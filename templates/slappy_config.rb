@@ -1,5 +1,3 @@
-require 'slappy/dsl'
-
 Slappy.configure do |config|
   ## Slappy Settings
   #
@@ -17,11 +15,11 @@ Slappy.configure do |config|
   # logger:
   #   Use logger object.
   #   Please specify logger instance.
-  config.logger = Logger.new(STDOUT)
+  # config.logger = Logger.new(STDOUT)
 
   # logger.level:
   #   Specify logger level.
-  config.logger.level = Logger::INFO
+  # config.logger.level = Logger::INFO
 
   ## Default parameters
   #
