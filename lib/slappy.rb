@@ -1,5 +1,7 @@
+require 'active_support'
+require 'active_support/core_ext'
+require 'chrono'
 require 'forwardable'
-require 'active_support/core_ext/string/inflections'
 require 'hashie'
 require 'slack'
 require 'termcolor'
@@ -11,7 +13,7 @@ module Slappy
     extend Forwardable
 
     def_delegators :configuration, :logger
-    def_delegators :client, :start, :hello, :hear, :say
+    def_delegators :client, :start, :hello, :hear, :say, :schedule
 
     def configure
       @configuration = Configuration.new
@@ -39,4 +41,5 @@ require 'slappy/commands/generator.rb'
 require 'slappy/commands/run.rb'
 require 'slappy/event'
 require 'slappy/listener'
+require 'slappy/schedule'
 require 'slappy/version'

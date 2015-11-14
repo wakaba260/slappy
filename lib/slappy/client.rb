@@ -36,6 +36,11 @@ module Slappy
       Slack.chat_postMessage params
     end
 
+    def schedule(schedule, options = {}, &block)
+      @schedule ||= Schedule.new
+      @schedule.register schedule, options, &block
+    end
+
     private
 
     def set_signal_trap

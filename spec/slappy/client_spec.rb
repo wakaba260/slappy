@@ -43,6 +43,13 @@ describe Slappy::Client do
     it { expect { subject }.not_to raise_error }
   end
 
+  describe '#schedule' do
+    subject { client.schedule(pattern, options) { nil } }
+    let(:pattern) { '* * * * *' }
+    let(:options) { Hash.new }
+    it { expect { subject }.not_to raise_error }
+  end
+
   describe '#config' do
     subject { client.send :config }
     it { is_expected.to be_instance_of Slappy::Configuration }
