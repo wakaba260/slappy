@@ -1,5 +1,6 @@
 require 'active_support'
 require 'active_support/core_ext'
+require 'active_support/concern'
 require 'chrono'
 require 'forwardable'
 require 'hashie'
@@ -33,6 +34,7 @@ module Slappy
   end
 end
 
+require 'slappy/slack_api/concerns/findable'
 require 'slappy/cli'
 require 'slappy/client'
 require 'slappy/configuration'
