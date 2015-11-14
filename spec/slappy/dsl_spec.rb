@@ -3,9 +3,7 @@ require 'slappy/dsl'
 
 describe Slappy::DSL do
   describe '.delegate' do
-    before do
-      target.extend Slappy::DSL
-    end
+    before { target.extend Slappy::DSL }
     let(:target) { Object.new }
     subject { target }
 
