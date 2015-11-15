@@ -21,7 +21,8 @@ describe Slappy::SlackAPI::Findable do
     context 'when monitor_event call' do
       before do
         test_class.list
-        allow_any_instance_of(Slappy::SubtypeListener).to receive(:time_valid?).and_return(true)
+        listener = Slappy::Listener::SubtypeListener
+        allow_any_instance_of(listener).to receive(:time_valid?).and_return(true)
         Slappy.client.instance_variable_get(:@callbacks)[:message].each do |callback|
           callback.call(event)
         end
