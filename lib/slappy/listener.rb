@@ -1,19 +1,9 @@
+require 'slappy/listeners/concerns/listenable'
+require 'slappy/listeners/base'
+require 'slappy/listeners/text_listener'
+require 'slappy/listeners/subtype_listener'
+
 module Slappy
-  class Listener
-    def initialize(pattern, callback)
-      pattern = /#{pattern}/ if pattern.is_a? String
-      @regexp = pattern
-      @callback = callback
-    end
-
-    def call(event)
-      return unless Time.at(event.ts.to_f) > Slappy.client.start_time
-      return unless event.text.match @regexp
-      @callback.call(event)
-    end
-
-    def pattern
-      @regexp
-    end
+  module Listener
   end
 end

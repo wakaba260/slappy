@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe Slappy::Event do
-  let(:event)   { Slappy::Event.new(data, pattern) }
-  let(:pattern) { /test (.*)/ }
+  let(:event) { Slappy::Event.new(data) }
   let(:data) do
     {
       'type'     => 'message',
@@ -13,12 +12,6 @@ describe Slappy::Event do
       'event_ts' => '1446695868.000046',
       'team'     => 'T029DFCEP'
     }
-  end
-
-  describe '#match_data' do
-    subject { event.matches }
-    let(:matcher) { data['text'].match pattern }
-    it { is_expected.to eq matcher }
   end
 
   describe 'defined_method' do
@@ -36,8 +29,6 @@ describe Slappy::Event do
           is_expected.to eq return_value
         end
       end
-
-      describe ''
     end
 
     context 'type' do
@@ -54,7 +45,7 @@ describe Slappy::Event do
 
     context 'when text is nil' do
       subject { event.text }
-      let(:event) { Slappy::Event.new(data_text_nil, pattern) }
+      let(:event) { Slappy::Event.new(data_text_nil) }
       let(:data_text_nil) { data.reject { |k, _v| k == 'text' } }
 
       it { expect { subject }.not_to raise_error }

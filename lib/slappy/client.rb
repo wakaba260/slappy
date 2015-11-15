@@ -27,12 +27,12 @@ module Slappy
 
     def hear(pattern, &block)
       @callbacks[:message] ||= []
-      @callbacks[:message].push Listener.new(pattern, block)
+      @callbacks[:message].push Listener::TextListener.new(pattern, block)
     end
 
     def monitor(subtype, &block)
       @callbacks[:message] ||= []
-      @callbacks[:message].push SubtypeListener.new(subtype, block)
+      @callbacks[:message].push Listener::SubtypeListener.new(subtype, block)
     end
 
     def say(text, options = {})
@@ -63,7 +63,7 @@ module Slappy
           when :hello
             listener.call
           when :message
-            event = Event.new(data, listener.pattern)
+            event = Event.new(data)
             listener.call(event)
           end
         end
