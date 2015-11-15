@@ -43,7 +43,8 @@ module Slappy
         username: robot.username,
         icon_emoji: robot.icon_emoji,
         channel: robot.channel,
-        icon_url: robot.icon_url
+        icon_url: robot.icon_url,
+        as_user: robot.as_user
       }
     end
   end

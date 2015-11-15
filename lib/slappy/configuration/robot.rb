@@ -1,7 +1,11 @@
 module Slappy
   class Configuration
     class Robot
-      attr_accessor :botname, :username, :channel, :icon_emoji, :icon_url
+      attr_accessor :botname, :username, :channel, :icon_emoji, :icon_url, :as_user
+
+      def as_user
+        @as_user || false
+      end
 
       def botname
         @botname || username
