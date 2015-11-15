@@ -54,11 +54,4 @@ describe Slappy::Client do
     subject { client.send :config }
     it { is_expected.to be_instance_of Slappy::Configuration }
   end
-
-  describe '#send_param' do
-    subject { client.send :merge_send_params, params }
-    let(:params) { { channel: '#channel', text: 'say' } }
-    it { expect(subject[:channel]).to eq params[:channel] }
-    it { expect(subject[:text]).to eq params[:text] }
-  end
 end
