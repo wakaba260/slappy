@@ -1,7 +1,7 @@
 module Slappy
   module SlackAPI
-    class Channel
-      include Findable
+    class Channel < Base
+      self.monitor_event = 'channel_created'
 
       def name
         '#' + @data.name

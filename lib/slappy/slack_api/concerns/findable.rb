@@ -11,7 +11,7 @@ module Slappy
       end
 
       module ClassMethods
-        attr_reader :list_name, :api_name
+        attr_reader :list_name, :api_name, :monitor_event
 
         def api_name=(api_name)
           @api_name = api_name
@@ -21,12 +21,26 @@ module Slappy
           @list_name = list_name
         end
 
-        def list(options = {})
-          api_name    = self.api_name || name.split('::').last.downcase + 's'
-          list_name   = self.list_name || api_name
-          method_name = "#{api_name}_list"
+        def monitor_event=(target)
+          target = [target] unless target.instance_of? Array
+          @monitor_event = target
+        end
 
-          Slack.send(method_name, options)[list_name].map { |data| new(data) }
+        def list(options = {})
+          @monitor_event.each do |event|
+            Slappy.monitor event do
+              @list = nil
+            end
+          end
+
+          unless @list
+            api_name    = self.api_name || name.split('::').last.downcase + 's'
+            list_name   = self.list_name || api_name
+            method_name = "#{api_name}_list"
+
+            @list = Slack.send(method_name, options)[list_name].map { |data| new(data) }
+          end
+          @list
         end
 
         def find(arg)

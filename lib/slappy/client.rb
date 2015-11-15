@@ -30,6 +30,11 @@ module Slappy
       @callbacks[:message].push Listener.new(pattern, block)
     end
 
+    def monitor(subtype, &block)
+      @callbacks[:message] ||= []
+      @callbacks[:message].push SubtypeListener.new(subtype, block)
+    end
+
     def say(text, options = {})
       options[:text] = text
       params = merge_send_params options

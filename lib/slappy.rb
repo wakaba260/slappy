@@ -14,7 +14,7 @@ module Slappy
     extend Forwardable
 
     def_delegators :configuration, :logger
-    def_delegators :client, :start, :hello, :hear, :say, :schedule
+    def_delegators :client, :start, :hello, :hear, :say, :schedule, :monitor
 
     def configure
       @configuration = Configuration.new
@@ -35,6 +35,7 @@ module Slappy
 end
 
 require 'slappy/slack_api/concerns/findable'
+require 'slappy/slack_api/base'
 require 'slappy/slack_api/channel'
 require 'slappy/slack_api/direct'
 require 'slappy/slack_api/group'
@@ -48,4 +49,5 @@ require 'slappy/commands/run.rb'
 require 'slappy/event'
 require 'slappy/listener'
 require 'slappy/schedule'
+require 'slappy/subtype_listner'
 require 'slappy/version'
