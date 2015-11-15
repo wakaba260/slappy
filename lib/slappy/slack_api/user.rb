@@ -1,8 +1,6 @@
 module Slappy
   module SlackAPI
-    class User
-      include Findable
-
+    class User < Base
       self.list_name = 'members'
 
       def name

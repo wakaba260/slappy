@@ -1,8 +1,6 @@
 module Slappy
   module SlackAPI
-    class Channel
-      include Findable
-
+    class Channel < Base
       def name
         '#' + @data.name
       end

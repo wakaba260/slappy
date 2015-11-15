@@ -35,6 +35,7 @@ module Slappy
 end
 
 require 'slappy/slack_api/concerns/findable'
+require 'slappy/slack_api/base'
 require 'slappy/slack_api/channel'
 require 'slappy/slack_api/direct'
 require 'slappy/slack_api/group'

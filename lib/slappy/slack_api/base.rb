@@ -1,6 +1,7 @@
 module Slappy
   module SlackAPI
-    class Group < Base
+    class Base
+      include Findable
     end
   end
 end
