@@ -112,6 +112,7 @@ robot.username   - default: 'slappy'
 robot.icon_emoji - default: nil
 robot.channel    - default: '#general'
 robot.icon_url   - default: nil
+robot.as_user    - default: false
 ```
 
 ### Basic Usage
