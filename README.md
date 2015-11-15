@@ -117,43 +117,98 @@ robot.as_user    - default: false
 
 ### Basic Usage
 
-If you not want execute `slappy start` command, written by (require `'slappy/dsl'` use DSL):
+```ruby
+# called when start up
+hello do
+  logger.info 'successfly connected'
+end
+```
+
+#### Send and Receive Message
 
 ```ruby
-require 'slappy'
-
-# called when start up
-Slappy.hello do
-  Slappy.logger.info 'successfly connected'
-end
-
 # called when match message
-Slappy.hear 'foo' do
-  Slappy.logger.info 'foo'
+hear 'foo' do
+  logger.info 'foo'
 end
 
 # use regexp in string literal
-Slappy.hear 'bar (.*)' do |event|
-  Slappy.logger.info event.matches[1] #=> Event#matches return MatchData object
+hear 'bar (.*)' do |event|
+  logger.info event.matches[1] #=> Event#matches return MatchData object
 end
 
 # event object is slack event JSON (convert to Hashie::Mash)
-Slappy.hear '^bar (.*)' do |event|
-  Slappy.logger.info event.channel #=> channel id
-  Slappy.say 'slappy!', channel: event.channel #=> to received message channel
-  Slappy.say 'slappy!', channel: '#general'
-  Slappy.say 'slappy!', username: 'slappy!', icon_emoji: ':slappy:'
+hear '^bar (.*)' do |event|
+  say 'slappy!', channel: event.channel  #=> to received channel object
+  say 'slappy!', channel: '#general'     #=> send to public channel
+  say 'slappy!', channel: 'private-room' #=> send to private group
+  say 'slappy!', username: 'slappy!', icon_emoji: ':slappy:' #=> change config
 end
 
 # use regexp literal
-Slappy.hear /^foobar/ do
-  Slappy.logger.info 'slappppy!'
+hear(/^foobar/) do
+  logger.info 'slappppy!'
+end
+```
+
+#### Monitoring Subtypes Event
+
+```ruby
+monitor 'channel_joined' do |event|
+  say "Welcome to #{event.name}!", channel: event.channel
 end
 
-Slappy.start #=> Start slappy process
+monitor 'team_join' do |event|
+  say "Welcome to this team!", channel: "#general"
+end
+```
+
+#### Schedule Event
+
+```ruby
+schedule '* * * * *' do
+  logger.info 'Slappy alive...' #=> Repeat every minutes.
+end
+
+```
+
+### DSL Methods
+
+|method|when execute callback|
+|:---:|:---|
+|hello|start up|
+|hear|message (match pattern)|
+|monitor|[Slack RTM event](https://api.slack.com/rtm)|
+|schedule|specify time ([Syntax is here](https://github.com/r7kamura/chrono)) - Thanks to Chrono!|
+
+### In your Application
+
+If you not want execute `slappy start` command, written by (require `'slappy/dsl'` use DSL):
+
+```
+require 'slappy'
+
+Slappy.hello do
+  # In your code..
+end
+
+Slappy.say 'message to slack'
+
+Slappy.start #=> Start WebSocket connection
 ```
 
 ## Release Note
+
+- v0.5.0
+  - Support Schedule
+  - Support Slack RMT Event
+  - Support private group
+  - Support as_user option
+  - Introduce SlackAPI objects
+    - Group
+    - Channel
+    - Direct
+    - User
 
 - v0.4.0
   - Support logger
