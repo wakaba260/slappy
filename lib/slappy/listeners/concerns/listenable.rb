@@ -23,7 +23,7 @@ module Slappy
       end
 
       def time_valid?(event)
-        Time.at(event.ts.to_f) > Slappy.client.start_time
+        event.ts > Slappy.client.start_time
       end
 
       private
