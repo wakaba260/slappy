@@ -13,5 +13,11 @@ module Slappy
     def text
       @data['text'].to_s
     end
+
+    def channel
+      SlackAPI::Channel.find(id: @data['channel']) ||
+        SlackAPI::Group.find(id: @data['channel']) ||
+        SlackAPI::Direct.find(id: @data['channel'])
+    end
   end
 end
