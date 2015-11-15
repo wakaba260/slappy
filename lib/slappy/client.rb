@@ -63,7 +63,7 @@ module Slappy
           when :hello
             listener.call
           when :message
-            event = Event.new(data, listener.pattern)
+            event = Event.new(data)
             listener.call(event)
           end
         end

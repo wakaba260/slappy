@@ -7,7 +7,7 @@ describe Slappy::Listener do
   let(:pattern)  { /test/ }
   let(:callback) { proc { result } }
   let(:result)   { 'test' }
-  let(:event)    { Slappy::Event.new(data, pattern) }
+  let(:event)    { Slappy::Event.new(data) }
   let(:data)     { { 'text' => 'test', 'ts' => data_ts.to_f.to_s } }
   let(:data_ts)  { 1.hours.since }
   let(:now)      { Time.now }
@@ -18,10 +18,10 @@ describe Slappy::Listener do
   end
 
   describe '#pattern' do
+    subject { listener.pattern }
     let(:regexp) { /^test/ }
 
     context 'when regexp given' do
-      subject { listener.pattern }
       let(:pattern) { /^test/ }
 
       it 'should be return regexp' do
@@ -30,7 +30,6 @@ describe Slappy::Listener do
     end
 
     context 'when string given' do
-      subject { listener.pattern }
       let(:pattern) { '^test' }
 
       it 'should be return regexp' do

@@ -28,7 +28,7 @@ describe Slappy::SlackAPI::Findable do
       end
 
       subject { test_class.instance_variable_get(:@list) }
-      let(:event) { Slappy::Event.new(data, subtype) }
+      let(:event) { Slappy::Event.new(data) }
 
       it { is_expected.to be_nil }
     end

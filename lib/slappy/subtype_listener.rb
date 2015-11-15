@@ -7,7 +7,7 @@ module Slappy
 
     def call(event)
       return unless time_valid?(event)
-      return unless event.subtype == @subtype
+      return unless event.subtype.match @subtype
       @callback.call(event)
     end
 
