@@ -22,11 +22,14 @@ module Slappy
         end
 
         def list(options = {})
-          api_name    = self.api_name || name.split('::').last.downcase + 's'
-          list_name   = self.list_name || api_name
-          method_name = "#{api_name}_list"
+          unless @list
+            api_name    = self.api_name || name.split('::').last.downcase + 's'
+            list_name   = self.list_name || api_name
+            method_name = "#{api_name}_list"
 
-          Slack.send(method_name, options)[list_name].map { |data| new(data) }
+            @list = Slack.send(method_name, options)[list_name].map { |data| new(data) }
+          end
+          @list
         end
 
         def find(arg)
