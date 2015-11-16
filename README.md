@@ -199,6 +199,9 @@ Slappy.start #=> Start WebSocket connection
 
 ## Release Note
 
+- v0.5.1
+  - Fix monitor event disabled
+
 - v0.5.0
   - Support Schedule
   - Support Slack RMT Event
