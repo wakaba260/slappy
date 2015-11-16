@@ -30,9 +30,9 @@ module Slappy
       @callbacks[:message].push Listener::TextListener.new(pattern, block)
     end
 
-    def monitor(subtype, &block)
-      @callbacks[:message] ||= []
-      @callbacks[:message].push Listener::SubtypeListener.new(subtype, block)
+    def monitor(type, &block)
+      @callbacks[type.to_sym] ||= []
+      @callbacks[type.to_sym].push Listener::TypeListener.new(type, block)
     end
 
     def say(text, options = {})
@@ -61,7 +61,7 @@ module Slappy
           case event_name
           when :hello
             listener.call
-          when :message
+          else
             event = Event.new(data)
             listener.call(event)
           end

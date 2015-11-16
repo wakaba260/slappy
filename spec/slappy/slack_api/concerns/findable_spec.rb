@@ -8,9 +8,9 @@ describe Slappy::SlackAPI::Findable do
 
   before { allow(Slack).to receive(:groups_list).and_return(group_list) }
   let(:test_class) { Group }
-  let(:subtype)    { 'group_open' }
+  let(:type) { 'group_open' }
   let(:group_list) { { 'groups' => [data] } }
-  let(:data) { { id: id, name: name, subtype: subtype, ts: Time.now } }
+  let(:data) { { id: id, name: name, type: type, ts: Time.now } }
   let(:id)   { '12345' }
   let(:name) { 'test' }
 
@@ -21,9 +21,9 @@ describe Slappy::SlackAPI::Findable do
     context 'when monitor_event call' do
       before do
         test_class.list
-        listener = Slappy::Listener::SubtypeListener
+        listener = Slappy::Listener::TypeListener
         allow_any_instance_of(listener).to receive(:time_valid?).and_return(true)
-        Slappy.client.instance_variable_get(:@callbacks)[:message].each do |callback|
+        Slappy.client.instance_variable_get(:@callbacks)[:group_open].each do |callback|
           callback.call(event)
         end
       end
