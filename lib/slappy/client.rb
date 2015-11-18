@@ -1,5 +1,7 @@
 module Slappy
   class Client
+    include Slappy::Debuggable
+
     attr_reader :start_time
 
     def initialize
@@ -17,22 +19,26 @@ module Slappy
         register_event event_name, listeners
       end
       set_signal_trap
+      Debug.log 'Slappy start'
       client.start
     end
 
     def hello(&block)
       @callbacks[:hello] ||= []
       @callbacks[:hello].push block
+      Debug.log "Add hello event(#{@callbacks[:hello].size})"
     end
 
     def hear(pattern, &block)
       @callbacks[:message] ||= []
       @callbacks[:message].push Listener::TextListener.new(pattern, block)
+      Debug.log "Add here event(#{@callbacks[:message].size}): #{pattern}"
     end
 
     def monitor(type, &block)
       @callbacks[type.to_sym] ||= []
       @callbacks[type.to_sym].push Listener::TypeListener.new(type, block)
+      Debug.log "Add monitor event(#{@callbacks[type.to_sym].size}): #{type}"
     end
 
     def say(text, options = {})
@@ -40,9 +46,10 @@ module Slappy
       Messanger.new(options).message
     end
 
-    def schedule(schedule, options = {}, &block)
+    def schedule(pattern, options = {}, &block)
       @schedule ||= Schedule.new
-      @schedule.register schedule, options, &block
+      @schedule.register pattern, options, &block
+      Debug.log "Add schedule event(#{@schedule.list.size}): #{pattern}"
     end
 
     private
