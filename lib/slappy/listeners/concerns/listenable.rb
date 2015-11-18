@@ -2,6 +2,7 @@ module Slappy
   module Listener
     module Listenable
       include ActiveSupport::Concern
+      include Slappy::Debuggable
 
       attr_reader :pattern
 
@@ -11,14 +12,26 @@ module Slappy
       end
 
       def call(event)
-        return unless time_valid?(event)
+        Debug.log "Listen event call: #{target_element}:#{event.send(target_element)}"
+
+        unless time_valid?(event)
+          Debug.log 'Event happend in before start time'
+          return
+        end
 
         target = event.send(target_element)
-        return unless target
+        unless target
+          Debug.log 'Target is nil'
+          return
+        end
 
         event.matches = target.match pattern
-        return unless event.matches
+        unless event.matches
+          Debug.log "Target is not match pattern(#{pattern})"
+          return
+        end
 
+        Debug.log "Callback event call: #{pattern}"
         @callback.call(event)
       end
 
