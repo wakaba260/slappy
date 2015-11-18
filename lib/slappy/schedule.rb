@@ -40,8 +40,8 @@ module Slappy
     private
 
     def generate_id
-      figure = Math.log10(DEFAULT_MAX_THREAD) + 1
-      id = format("%0#{figure}d", SecureRandom.random_number(DEFAULT_MAX_THREAD))
+      digit = Math.log10(DEFAULT_MAX_THREAD).to_i + 1
+      id = format("%0#{digit}d", SecureRandom.random_number(DEFAULT_MAX_THREAD))
       id = generate_id if list.include? id
       id
     end
