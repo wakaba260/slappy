@@ -199,6 +199,10 @@ Slappy.start #=> Start WebSocket connection
 
 ## Release Note
 
+- v0.5.2
+  - Add debug logging
+  - Fix schedule id is not normality
+
 - v0.5.1
   - Fix monitor event disabled
 
