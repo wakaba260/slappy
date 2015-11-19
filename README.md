@@ -151,7 +151,7 @@ hear(/^foobar/) do
 end
 ```
 
-#### Monitoring Subtypes Event
+#### Monitoring Types Event
 
 ```ruby
 monitor 'channel_joined' do |event|
@@ -169,7 +169,19 @@ end
 schedule '* * * * *' do
   logger.info 'Slappy alive...' #=> Repeat every minutes.
 end
+```
 
+#### Sleep Event
+
+There conditions, this event be called:
+
+- `raise StandardError` in script
+- trap SIGTERM or SIGINT
+
+```
+goodnight do
+  logger.info 'goodnight'
+end
 ```
 
 ### DSL Methods

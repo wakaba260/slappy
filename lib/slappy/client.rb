@@ -20,13 +20,24 @@ module Slappy
       end
       set_signal_trap
       Debug.log 'Slappy start'
-      client.start
+      begin
+        client.start
+      rescue StandardError => e
+        @callbacks[:goodnight].each(&:call)
+        raise e, e.message
+      end
     end
 
     def hello(&block)
       @callbacks[:hello] ||= []
       @callbacks[:hello].push block
       Debug.log "Add hello event(#{@callbacks[:hello].size})"
+    end
+
+    def goodnight(&block)
+      @callbacks[:goodnight] ||= []
+      @callbacks[:goodnight].push block
+      Debug.log "Add goodnight event(#{@callbacks[:goodnight].size})"
     end
 
     def hear(pattern, &block)
@@ -57,6 +68,10 @@ module Slappy
     def set_signal_trap
       [:TERM, :INT].each do |signal|
         Signal.trap(signal) do
+          @callbacks[:goodnight].each do |callback|
+            th = Thread.new { callback.call }
+            th.join
+          end
           EventMachine.stop
         end
       end
