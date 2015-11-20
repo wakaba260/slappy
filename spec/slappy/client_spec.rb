@@ -22,6 +22,15 @@ describe Slappy::Client do
     end
   end
 
+  describe '#goodnight' do
+    before do
+      allow_any_instance_of(::Slack::RealTime::Client).to receive(:start).and_raise(StandardError)
+      client.goodnight { print 'goodnight' }
+    end
+    subject { client.start }
+    it { expect { subject }.to raise_error(StandardError).and output('goodnight').to_stdout }
+  end
+
   describe '#hello' do
     before { size.times { client.hello { puts 'hello' } } }
     subject { client.instance_variable_get(:@callbacks)[:hello] }
