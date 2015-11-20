@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Slappy::Listener::TextListener do
-  let(:listener) { described_class.new(pattern, callback) }
+  let(:listener) { described_class.new(pattern, &callback) }
   let(:pattern)  { /test/ }
   let(:callback) { proc { result } }
   let(:result)   { 'test' }

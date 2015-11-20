@@ -6,8 +6,9 @@ module Slappy
 
       attr_reader :pattern
 
-      def initialize(target, callback)
+      def initialize(target, options = {}, &callback)
         @pattern = target
+        @options = options
         @callback = callback
       end
 

@@ -7,7 +7,7 @@ describe Slappy::Listener::Listenable do
     include Slappy::Listener::Listenable
   end
 
-  let(:listener) { SpecListener.new(target, callback) }
+  let(:listener) { SpecListener.new(target, options, &callback) }
   let(:target)   { 'test' }
   let(:callback) { proc { result } }
   let(:result)   { 'test' }
@@ -15,6 +15,7 @@ describe Slappy::Listener::Listenable do
   let(:data)     { { 'spec' => 'test', 'ts' => data_ts.to_f.to_s } }
   let(:data_ts)  { 1.hours.since }
   let(:now)      { Time.now }
+  let(:options)  { Hash.new }
 
   before do
     Timecop.freeze(Time.now)
