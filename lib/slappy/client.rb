@@ -29,27 +29,19 @@ module Slappy
     end
 
     def hello(&block)
-      @callbacks[:hello] ||= []
-      @callbacks[:hello].push block
-      Debug.log "Add hello event(#{@callbacks[:hello].size})"
+      register_callback(:hello, :hello, block)
     end
 
     def goodnight(&block)
-      @callbacks[:goodnight] ||= []
-      @callbacks[:goodnight].push block
-      Debug.log "Add goodnight event(#{@callbacks[:goodnight].size})"
+      register_callback(:goodnight, :goodnight, block)
     end
 
     def hear(pattern, options = {}, &block)
-      @callbacks[:message] ||= []
-      @callbacks[:message].push Listener::TextListener.new(pattern, options, &block)
-      Debug.log "Add here event(#{@callbacks[:message].size}): #{pattern}"
+      register_callback(:hear, :message, Listener::TextListener.new(pattern, options, &block))
     end
 
     def monitor(type, options = {}, &block)
-      @callbacks[type.to_sym] ||= []
-      @callbacks[type.to_sym].push Listener::TypeListener.new(type, options, &block)
-      Debug.log "Add monitor event(#{@callbacks[type.to_sym].size}): #{type}"
+      register_callback(:monitor, type.to_sym, Listener::TypeListener.new(type, options, &block))
     end
 
     def say(text, options = {})
@@ -64,6 +56,12 @@ module Slappy
     end
 
     private
+
+    def register_callback(name, type, callback)
+      @callbacks[type] ||= []
+      @callbacks[type].push callback
+      Debug.log "Add #{name} event(#{@callbacks[type.to_sym].size}): #{type}"
+    end
 
     def set_signal_trap
       [:TERM, :INT].each do |signal|
