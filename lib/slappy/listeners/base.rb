@@ -17,13 +17,21 @@ module Slappy
       end
 
       def call(event)
-        Debug.log "Listen event call: #{target_element}:#{event.send(target_element)}"
+        channel = "channel: #{event.try(:channel).try(:name)}"
+        element = "#{target_element}: #{event.try(target_element)}"
+        Debug.log "Listen event call(#{channel} / #{element})"
 
         return unless valid?(event)
         return unless target?(event)
 
         Debug.log "Callback event call: #{pattern}"
         @callback.call(event)
+      end
+
+      private
+
+      def target_element
+        self.class.name.split('::').last.gsub(/Listener$/, '').underscore.to_sym
       end
     end
   end
