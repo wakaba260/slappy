@@ -22,7 +22,8 @@ describe Slappy::SlackAPI::Findable do
       before do
         test_class.list
         listener = Slappy::Listener::TypeListener
-        allow_any_instance_of(listener).to receive(:time_valid?).and_return(true)
+        allow_any_instance_of(listener).to receive(:valid?).and_return(true)
+        allow_any_instance_of(listener).to receive(:target?).and_return(true)
         Slappy.client.instance_variable_get(:@callbacks)[:group_open].each do |callback|
           callback.call(event)
         end
