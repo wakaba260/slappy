@@ -11,7 +11,7 @@ module Slappy
       end
 
       module ClassMethods
-        attr_reader :list_name, :api_name, :monitor_event
+        attr_reader :list_name, :api_name, :monitor_event, :monitor_registerd
 
         def api_name=(api_name)
           @api_name = api_name
@@ -27,10 +27,13 @@ module Slappy
         end
 
         def list(options = {})
-          @monitor_event.each do |event|
-            Slappy.monitor event do
-              @list = nil
+          unless @monitor_registerd
+            @monitor_event.each do |event|
+              Slappy.monitor event do
+                @list = nil
+              end
             end
+            @monitor_registerd = true
           end
 
           unless @list
