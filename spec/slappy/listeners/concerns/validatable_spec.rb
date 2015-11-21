@@ -9,6 +9,10 @@ describe Slappy::Listener::Validatable do
     def initialize(pattern)
       self.pattern = pattern
     end
+
+    def target_element
+      'spec'
+    end
   end
 
   let(:listener) { SpecListener.new(pattern) }

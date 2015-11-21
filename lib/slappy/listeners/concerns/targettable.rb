@@ -15,35 +15,32 @@ module Slappy
 
       class Target
         def valid?(event)
-          result = []
-
           return true if channel.blank? && user.blank?
 
-          unless valid_channel?(event.channel)
-            # rubocop:disable Metrics/LineLength
-            Debug.log "Message from restrict channel(expect: #{channel.join(',')}, got: #{event.channel.name})"
-            # rubocop:enable Metrics/LineLength
-            result << false
-          end
+          result = []
 
-          unless valid_user?(event.user)
-            # rubocop:disable Metrics/LineLength
-            Debug.log "Message from restrict user(expect: #{user.join(',')}, got: #{event.user.name})"
-            # rubocop:enable Metrics/LineLength
-            result << false
-          end
+          result << false unless valid_channel?(event.channel)
+          result << false unless valid_user?(event.user)
 
           result.blank?
         end
 
         def valid_user?(user)
           return true if self.user.compact.blank?
-          user_list.include? user
+          unless user_list.include? user
+            Debug.log "Message from restrict user(expect: #{user_names})"
+            return false
+          end
+          true
         end
 
         def valid_channel?(channel)
           return true if self.channel.compact.blank?
-          channel_list.include? channel
+          unless channel_list.include? channel
+            Debug.log "Message from restrict channel(expect: #{channel_names})"
+            return false
+          end
+          true
         end
 
         def channel=(value)
@@ -61,6 +58,10 @@ module Slappy
           end
         end
 
+        def channel_names
+          channel.join(',')
+        end
+
         def user
           @user ||= []
         end
@@ -74,6 +75,10 @@ module Slappy
           @user.each_with_object([]) do |user, result|
             result << Slappy::SlackAPI.find(user)
           end
+        end
+
+        def user_names
+          user.join(',')
         end
       end
     end

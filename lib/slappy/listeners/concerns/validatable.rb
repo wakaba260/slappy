@@ -31,10 +31,6 @@ module Slappy
       def time_valid?(event)
         event.ts > Slappy.client.start_time
       end
-
-      def target_element
-        self.class.name.split('::').last.gsub(/Listener$/, '').underscore.to_sym
-      end
     end
   end
 end
