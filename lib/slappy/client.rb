@@ -23,7 +23,7 @@ module Slappy
       begin
         client.start
       rescue StandardError => e
-        @callbacks[:goodnight].each(&:call)
+        @callbacks[:goodnight].each(&:call) if @callbacks[:goodnight]
         raise e, e.message
       end
     end
