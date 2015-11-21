@@ -137,16 +137,18 @@ describe Slappy::Listener::Targettable do
   describe 'Target' do
     let(:target) { described_class::Target.new }
 
-    describe '#channel_list' do
-      before { target.channel = '#' + target_channel_name }
-      subject { target.channel_list }
-      it { is_expected.to eq [target_channel] }
-    end
+    describe '#list' do
+      context 'when channel' do
+        before { target.channel = '#' + target_channel_name }
+        subject { target.list :channel }
+        it { is_expected.to eq [target_channel] }
+      end
 
-    describe '#user_list' do
-      before { target.user = '@' + target_user_name }
-      subject { target.user_list }
-      it { is_expected.to eq [target_user] }
+      context 'when user' do
+        before { target.user = '@' + target_user_name }
+        subject { target.list :user }
+        it { is_expected.to eq [target_user] }
+      end
     end
   end
 end

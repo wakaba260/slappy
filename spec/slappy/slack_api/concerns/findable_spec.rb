@@ -6,10 +6,13 @@ describe Slappy::SlackAPI::Findable do
     self.monitor_event = 'group_open'
   end
 
-  before { allow(Slack).to receive(:groups_list).and_return(group_list) }
+  before do
+    allow_any_instance_of(Slappy::Event).to receive(:channel).and_return(Hashie::Mash.new(data))
+    allow(Slack).to receive(:groups_list).and_return(groups_list)
+  end
   let(:test_class) { Group }
   let(:type) { 'group_open' }
-  let(:group_list) { { 'groups' => [data] } }
+  let(:groups_list) { { 'groups' => [data] } }
   let(:data) { { id: id, name: name, type: type, ts: Time.now } }
   let(:id)   { '12345' }
   let(:name) { 'test' }

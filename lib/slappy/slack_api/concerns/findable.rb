@@ -26,15 +26,18 @@ module Slappy
           @monitor_event = target
         end
 
-        def list(options = {})
-          unless @monitor_registerd
-            @monitor_event.each do |event|
-              Slappy.monitor event do
-                @list = nil
-              end
+        def register_monitor
+          return if @monitor_registerd
+          @monitor_event.each do |event|
+            Slappy.monitor event do
+              @list = nil
             end
-            @monitor_registerd = true
           end
+          @monitor_registerd = true
+        end
+
+        def list(options = {})
+          register_monitor
 
           unless @list
             api_name    = self.api_name || name.split('::').last.downcase + 's'
