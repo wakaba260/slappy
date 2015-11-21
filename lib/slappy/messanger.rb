@@ -27,7 +27,8 @@ module Slappy
       end
 
       options[:channel] = id
-      Slack.chat_postMessage options
+      response = Slack.chat_postMessage options
+      fail SlackAPI::SlackError.new, response['error'] unless response['ok']
     end
 
     private

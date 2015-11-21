@@ -34,12 +34,6 @@ end
 
 require 'slappy/concerns/debuggable'
 require 'slappy/slack_api'
-require 'slappy/slack_api/concerns/findable'
-require 'slappy/slack_api/base'
-require 'slappy/slack_api/channel'
-require 'slappy/slack_api/direct'
-require 'slappy/slack_api/group'
-require 'slappy/slack_api/user'
 require 'slappy/cli'
 require 'slappy/client'
 require 'slappy/configuration'

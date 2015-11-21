@@ -10,9 +10,10 @@ describe Slappy::SlackAPI::Findable do
     allow_any_instance_of(Slappy::Event).to receive(:channel).and_return(Hashie::Mash.new(data))
     allow(Slack).to receive(:groups_list).and_return(groups_list)
   end
+
   let(:test_class) { Group }
   let(:type) { 'group_open' }
-  let(:groups_list) { { 'groups' => [data] } }
+  let(:groups_list) { { 'ok' => true, 'groups' => [data] } }
   let(:data) { { id: id, name: name, type: type, ts: Time.now } }
   let(:id)   { '12345' }
   let(:name) { 'test' }
