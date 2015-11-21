@@ -1,9 +1,11 @@
+require 'slappy/listeners/concerns/targettable'
 require 'slappy/listeners/concerns/validatable'
 
 module Slappy
   module Listener
     class Base
       include Validatable
+      include Targettable
 
       def initialize(pattern, options = {}, &callback)
         self.pattern = pattern
