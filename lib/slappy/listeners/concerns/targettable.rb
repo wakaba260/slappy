@@ -19,25 +19,16 @@ module Slappy
 
           result = []
 
-          result << false unless valid_channel?(event.channel)
-          result << false unless valid_user?(event.user)
+          result << false unless validation(:channel, event)
+          result << false unless validation(:user, event)
 
           result.blank?
         end
 
-        def valid_user?(user)
-          return true if self.user.compact.blank?
-          unless user_list.include? user
-            Debug.log "Message from restrict user(expect: #{user_names})"
-            return false
-          end
-          true
-        end
-
-        def valid_channel?(channel)
-          return true if self.channel.compact.blank?
-          unless channel_list.include? channel
-            Debug.log "Message from restrict channel(expect: #{channel_names})"
+        def validation(target, event)
+          return true if send(target).compact.blank?
+          unless send(:list, target).include? event.send target
+            Debug.log "Message from restrict #{target}(expect: #{target_names(target)})"
             return false
           end
           true
@@ -48,22 +39,18 @@ module Slappy
           @channel = value
         end
 
+        def list(target)
+          send(target).each_with_object([]) do |t, result|
+            result << Slappy::SlackAPI.find(t)
+          end
+        end
+
         def channel
           @channel ||= []
         end
 
-        def channel_list
-          @channel.each_with_object([]) do |channel, result|
-            result << Slappy::SlackAPI.find(channel)
-          end
-        end
-
-        def channel_names
-          channel.join(',')
-        end
-
-        def user
-          @user ||= []
+        def target_names(target)
+          send(target).join(',')
         end
 
         def user=(value)
@@ -71,14 +58,8 @@ module Slappy
           @user = value
         end
 
-        def user_list
-          @user.each_with_object([]) do |user, result|
-            result << Slappy::SlackAPI.find(user)
-          end
-        end
-
-        def user_names
-          user.join(',')
+        def user
+          @user ||= []
         end
       end
     end
