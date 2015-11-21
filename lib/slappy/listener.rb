@@ -1,4 +1,3 @@
-require 'slappy/listeners/concerns/listenable'
 require 'slappy/listeners/base'
 require 'slappy/listeners/text_listener'
 require 'slappy/listeners/type_listener'

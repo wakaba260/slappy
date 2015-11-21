@@ -2,15 +2,17 @@ require 'spec_helper'
 require 'active_support/core_ext/numeric/time'
 require 'timecop'
 
-describe Slappy::Listener::Listenable do
+describe Slappy::Listener::Validatable do
   class SpecListener
-    include Slappy::Listener::Listenable
+    include Slappy::Listener::Validatable
+
+    def initialize(pattern)
+      self.pattern = pattern
+    end
   end
 
-  let(:listener) { SpecListener.new(target, callback) }
-  let(:target)   { 'test' }
-  let(:callback) { proc { result } }
-  let(:result)   { 'test' }
+  let(:listener) { SpecListener.new(pattern) }
+  let(:pattern)  { 'test' }
   let(:event)    { Slappy::Event.new(data) }
   let(:data)     { { 'spec' => 'test', 'ts' => data_ts.to_f.to_s } }
   let(:data_ts)  { 1.hours.since }
@@ -22,11 +24,11 @@ describe Slappy::Listener::Listenable do
   end
 
   describe '#call' do
-    subject { listener.call(event) }
+    subject { listener.valid?(event) }
 
     context 'when match pattern' do
       it 'should be execute' do
-        is_expected.to eq result
+        is_expected.to be_truthy
       end
     end
 
@@ -34,7 +36,7 @@ describe Slappy::Listener::Listenable do
       let(:data) { { text: 'hoge' } }
 
       it 'should not be execute' do
-        is_expected.to eq nil
+        is_expected.to be_falsey
       end
     end
 
@@ -42,7 +44,7 @@ describe Slappy::Listener::Listenable do
       let(:data_ts) { 1.hours.ago }
 
       it 'should not be execute' do
-        is_expected.to be_nil
+        is_expected.to be_falsey
       end
     end
   end

@@ -40,15 +40,15 @@ module Slappy
       Debug.log "Add goodnight event(#{@callbacks[:goodnight].size})"
     end
 
-    def hear(pattern, &block)
+    def hear(pattern, options = {}, &block)
       @callbacks[:message] ||= []
-      @callbacks[:message].push Listener::TextListener.new(pattern, block)
+      @callbacks[:message].push Listener::TextListener.new(pattern, options, &block)
       Debug.log "Add here event(#{@callbacks[:message].size}): #{pattern}"
     end
 
-    def monitor(type, &block)
+    def monitor(type, options = {}, &block)
       @callbacks[type.to_sym] ||= []
-      @callbacks[type.to_sym].push Listener::TypeListener.new(type, block)
+      @callbacks[type.to_sym].push Listener::TypeListener.new(type, options, &block)
       Debug.log "Add monitor event(#{@callbacks[type.to_sym].size}): #{type}"
     end
 

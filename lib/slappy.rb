@@ -33,6 +33,7 @@ module Slappy
 end
 
 require 'slappy/concerns/debuggable'
+require 'slappy/slack_api'
 require 'slappy/slack_api/concerns/findable'
 require 'slappy/slack_api/base'
 require 'slappy/slack_api/channel'
