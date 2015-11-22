@@ -29,6 +29,12 @@ module Slappy
       Time.at(@data['ts'].to_f)
     end
 
+    def reply(text, options = {})
+      options[:text] = text
+      options[:channel] = channel
+      Messanger.new(options).message
+    end
+
     def reaction(emoji)
       result = ::Slack.reactions_add name: emoji, channel: @data['channel'], timestamp: @data['ts']
       Debug.log "Reaction response: #{result}"
