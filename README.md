@@ -190,8 +190,27 @@ end
 |:---:|:---|
 |hello|start up|
 |hear|message (match pattern)|
+|respond|message (match pattern and botname prefix given)|
 |monitor|[Slack RTM event](https://api.slack.com/rtm)|
 |schedule|specify time ([Syntax is here](https://github.com/r7kamura/chrono)) - Thanks to Chrono!|
+|goodinight|bot dead (StandardError, SIGTERM, and SIGINT received)|
+
+### Event Methods
+
+```
+hear 'slappy' do |event|
+  return if event.bot_message? #=> check message from webhook or integration
+  event.relpy 'slappy'         #=> relpy to event channel
+  event.reaction 'thumbsup'    #=> add reaction to event message
+end
+```
+
+|method|description|
+|:---:|:---|
+|bot_message?|check message from bot (webhook or integration is true)|
+|reply|reply message to event channel|
+|reaction|add reaction to event message|
+
 
 ### In your Application
 
@@ -210,6 +229,22 @@ Slappy.start #=> Start WebSocket connection
 ```
 
 ## Release Note
+
+- v0.6.0
+  - respond method
+    - respond event call when add message to botname prefix
+  - goodnight method
+    - goodnight event call when bod dead (StandardError, SIGTERM, and SIGINT received)
+  - New SlackAPI
+    - File
+    - Pin
+  - New Event methods
+    - bot_message? (contribute from [dnond](https://github.com/dnond))
+      - check message from bot(webhook, and integration)
+    - reaction
+      - reaction to event(add emoji reaction)
+    - reply
+      - relpy to event
 
 - v0.5.2
   - Add debug logging
@@ -249,15 +284,6 @@ Slappy.start #=> Start WebSocket connection
 
 - v0.1.0
   - Release
-
-## Feature
-
-- [ ] Execute in shell (because testable).
-- [ ] Support private channel
-- [ ] Support Schedule event (cron like)
-- [ ] Add bot name
-- [ ] client#respond (hubot#respond like)
-- [ ] Split chat adapter
 
 ## Contributing
 
