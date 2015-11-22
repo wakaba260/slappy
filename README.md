@@ -178,9 +178,31 @@ There conditions, this event be called:
 - `raise StandardError` in script
 - trap SIGTERM or SIGINT
 
-```
+```ruby
 goodnight do
   logger.info 'goodnight'
+end
+```
+
+#### From Option
+
+From Option enable to `hear`, `monitor`, and `respond`.
+This option specify reaction target!
+
+```ruby
+# specify target channel
+hear 'slappy', from: { channel: '#slappy' } do |event|
+  logger.info 'slappy!'
+end
+
+# specify target user
+hear 'slappy', from: { username: '@slappy' } do |event|
+  logger.info 'slappy!'
+end
+
+# specify target user and channel
+hear 'slappy', from: { channel: '#slappy', username: '@slappy' } do |event|
+  logger.info 'slappy!'
 end
 ```
 
@@ -197,7 +219,7 @@ end
 
 ### Event Methods
 
-```
+```ruby
 hear 'slappy' do |event|
   return if event.bot_message? #=> check message from webhook or integration
   event.relpy 'slappy'         #=> relpy to event channel
@@ -216,7 +238,7 @@ end
 
 If you not want execute `slappy start` command, written by (require `'slappy/dsl'` use DSL):
 
-```
+```ruby
 require 'slappy'
 
 Slappy.hello do
@@ -231,6 +253,8 @@ Slappy.start #=> Start WebSocket connection
 ## Release Note
 
 - v0.6.0
+  - Add from option to hear, monitor
+    - specify event target
   - respond method
     - respond event call when add message to botname prefix
   - goodnight method
