@@ -66,7 +66,7 @@ module Slappy
     def set_signal_trap
       [:TERM, :INT].each do |signal|
         Signal.trap(signal) do
-          @callbacks[:goodnight].each do |callback|
+          @callbacks[:goodnight].try(:each) do |callback|
             th = Thread.new { callback.call }
             th.join
           end
