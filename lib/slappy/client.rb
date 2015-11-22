@@ -24,7 +24,9 @@ module Slappy
         client.start
       rescue StandardError => e
         @callbacks[:goodnight].each(&:call) if @callbacks[:goodnight]
-        raise e, e.message
+        STDERR.puts e.backtrace.slice!(0) + ': ' + e.message
+        STDERR.puts "\tfrom " + e.backtrace.join("\n\tfrom ")
+        exit 1
       end
     end
 
