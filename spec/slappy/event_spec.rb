@@ -54,4 +54,20 @@ describe Slappy::Event do
       end
     end
   end
+
+  describe '#bot_message?' do
+    context 'data in event include bot_message' do
+      let(:event_by_bot) { Slappy::Event.new(data_by_bot) }
+      let(:data_by_bot) { data.merge('subtype' => 'bot_message') }
+
+      subject { event_by_bot.bot_message? }
+      it { is_expected.to be_truthy }
+    end
+
+    context 'data in event not include bot_message' do
+      let(:event_not_by_bot) { event }
+      subject { event_not_by_bot.bot_message? }
+      it { is_expected.to be_falsey }
+    end
+  end
 end

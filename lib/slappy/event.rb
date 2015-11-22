@@ -27,5 +27,9 @@ module Slappy
     def ts
       Time.at(@data['ts'].to_f)
     end
+
+    def bot_message?
+      @data['subtype'] && @data['subtype'] == 'bot_message'
+    end
   end
 end
