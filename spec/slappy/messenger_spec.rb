@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe Slappy::Messanger do
+describe Slappy::Messenger do
   before { allow(Slack).to receive(:chat_postMessage).and_return(response) }
   let(:response)  { { 'ok' => true } }
-  let(:messanger) { described_class.new options }
+  let(:messenger) { described_class.new options }
   let(:options)   { { channel: channel } }
   let(:channel) { Slappy::SlackAPI::Channel.new data }
   let(:data)    { { id: id, name: 'test', text: 'text' } }
   let(:id)        { '12345' }
 
   describe '#message' do
-    subject { messanger.message }
+    subject { messenger.message }
     let(:group_class)   { Slappy::SlackAPI::Group }
     let(:channel_class) { Slappy::SlackAPI::Channel }
     let(:direct_class)  { Slappy::SlackAPI::Direct }

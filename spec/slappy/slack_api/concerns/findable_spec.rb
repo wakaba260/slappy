@@ -38,6 +38,11 @@ describe Slappy::SlackAPI::Findable do
 
       it { is_expected.to be_nil }
     end
+
+    context 'when error from slack' do
+      let(:groups_list) { { 'ok' => false, 'error' => 'error test' } }
+      it { expect { subject }.to raise_error Slappy::SlackAPI::SlackError }
+    end
   end
 
   describe '#find' do
