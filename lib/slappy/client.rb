@@ -42,6 +42,13 @@ module Slappy
       register_callback(:hear, :message, Listener::TextListener.new(pattern, options, &block))
     end
 
+    def respond(pattern, options = {}, &block)
+      bot_name = options[:bot_name] || config.robot.botname || config.robot.username
+
+      pattern = "^#{bot_name}[[:blank:]]#{pattern}"
+      register_callback(:respond, :message, Listener::TextListener.new(pattern, options, &block))
+    end
+
     def monitor(type, options = {}, &block)
       register_callback(:monitor, type.to_sym, Listener::TypeListener.new(type, options, &block))
     end
