@@ -55,7 +55,7 @@ module Slappy
 
     def say(text, options = {})
       options[:text] = text
-      Messanger.new(options).message
+      Messenger.new(options).message
     end
 
     def schedule(pattern, options = {}, &block)

@@ -1,5 +1,5 @@
 module Slappy
-  class Messanger
+  class Messenger
     class MissingChannelException < StandardError; end
 
     CHANNEL_APIS = [SlackAPI::Channel, SlackAPI::Group, SlackAPI::Direct]

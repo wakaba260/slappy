@@ -32,7 +32,7 @@ module Slappy
     def reply(text, options = {})
       options[:text] = text
       options[:channel] = channel
-      Messanger.new(options).message
+      Messenger.new(options).message
     end
 
     def reaction(emoji)
