@@ -1,6 +1,7 @@
 module Slappy
   class Event
     extend Forwardable
+    include Debuggable
 
     attr_accessor :matches
 
@@ -26,6 +27,11 @@ module Slappy
 
     def ts
       Time.at(@data['ts'].to_f)
+    end
+
+    def reaction(emoji)
+      result = ::Slack.reactions_add name: emoji, channel: @data['channel'], timestamp: @data['ts']
+      Debug.log "Reaction response: #{result}"
     end
 
     def bot_message?
