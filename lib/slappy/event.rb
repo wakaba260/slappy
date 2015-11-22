@@ -29,11 +29,7 @@ module Slappy
     end
 
     def bot_message?
-      if @data['subtype'] && @data['subtype'] == 'bot_message'
-        return true
-      else
-        return false
-      end
+      @data['subtype'] && @data['subtype'] == 'bot_message'
     end
   end
 end
