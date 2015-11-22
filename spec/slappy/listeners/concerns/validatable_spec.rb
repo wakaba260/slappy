@@ -27,7 +27,7 @@ describe Slappy::Listener::Validatable do
     allow_any_instance_of(Slappy::Client).to receive(:start_time).and_return(now)
   end
 
-  describe '#call' do
+  describe '#valid?' do
     subject { listener.valid?(event) }
 
     context 'when match pattern' do
@@ -36,8 +36,17 @@ describe Slappy::Listener::Validatable do
       end
     end
 
+    context 'when target is nil' do
+      before { allow(event).to receive(:spec).and_return(nil) }
+
+      it 'should not be execute' do
+        is_expected.to be_falsey
+      end
+    end
+
     context 'when not match pattern' do
-      let(:data) { { text: 'hoge' } }
+      before { allow(listener).to receive(:time_valid?).and_return(true) }
+      let(:data) { { spec: 'hoge' } }
 
       it 'should not be execute' do
         is_expected.to be_falsey
