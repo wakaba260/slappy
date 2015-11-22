@@ -40,13 +40,25 @@ module Slappy
           register_monitor
 
           unless @list
-            api_name    = self.api_name || name.split('::').last.downcase + 's'
-            list_name   = self.list_name || api_name
             method_name = "#{api_name}_list"
 
-            @list = Slack.send(method_name, options)[list_name].map { |data| new(data) }
+            options[:channel] = SlackAPI.find(options[:channel]).id if options[:channel]
+            result = Slack.send(method_name, options)
+            unless result['ok']
+              exception = SlackError.new "Error message from slack (#{result['error']})"
+              fail exception, exception.message
+            end
+            @list = result[list_name].map { |data| new(data) }
           end
           @list
+        end
+
+        def api_name
+          @api_name || name.split('::').last.downcase + 's'
+        end
+
+        def list_name
+          @list_name || api_name
         end
 
         def find(arg)
