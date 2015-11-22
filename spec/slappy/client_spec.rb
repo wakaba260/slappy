@@ -22,6 +22,42 @@ describe Slappy::Client do
     end
   end
 
+  describe '#respond' do
+    before do
+      Slappy.configure { |config| config.robot.botname = botname }
+      allow_any_instance_of(Slappy::Event).to receive(:channel).and_return(channel)
+      allow_any_instance_of(Slappy::Listener::TextListener).to receive(:valid?).and_return(true)
+      allow_any_instance_of(Slappy::Listener::TextListener).to receive(:target?).and_return(true)
+      client.respond pattern, options, &block
+    end
+
+    subject { client.instance_variable_get(:@callbacks)[:message] }
+    let(:pattern) { 'test' }
+    let(:options) { Hash.new }
+    let(:block)   { proc { print 'respond' } }
+    let(:event)   { Slappy::Event.new text: "#{botname} #{pattern}", channel: 'slappy' }
+    let(:botname) { 'slappy' }
+    let(:channel) { Slappy::SlackAPI::Channel.new id: '12345', name: 'slappy' }
+
+    it 'should be registerd' do
+      expect(subject.size).to eq 1
+    end
+
+    context 'when match pattern' do
+      it 'should be callback call' do
+        expect { subject.first.call(event) }.to output('respond').to_stdout
+      end
+    end
+
+    context 'when not match pattern' do
+      let(:event) { Slappy::Event.new text: pattern, channel: 'slappy' }
+
+      it 'should not be callback call' do
+        expect { subject.first.call(event) }.to output(nil).to_stdout
+      end
+    end
+  end
+
   describe '#goodnight' do
     before do
       allow_any_instance_of(::Slack::RealTime::Client).to receive(:start).and_raise(StandardError)

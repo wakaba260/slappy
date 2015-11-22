@@ -12,7 +12,7 @@ module Slappy
     extend Forwardable
 
     def_delegators :configuration, :logger
-    def_delegators :client, :start, :hello, :hear, :say, :schedule, :monitor, :goodnight
+    def_delegators :client, :start, :hello, :hear, :say, :schedule, :monitor, :goodnight, :respond
 
     def configure
       @configuration = Configuration.new
