@@ -34,6 +34,7 @@ end
 
 require 'slappy/concerns/debuggable'
 require 'slappy/slack_api'
+require 'slappy/brain'
 require 'slappy/cli'
 require 'slappy/client'
 require 'slappy/configuration'
