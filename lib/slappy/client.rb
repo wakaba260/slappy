@@ -64,6 +64,10 @@ module Slappy
       Debug.log "Add schedule event(#{@schedule.list.size}): #{pattern}"
     end
 
+    def brain
+      config.robot.brain
+    end
+
     private
 
     def register_callback(name, type, callback)
