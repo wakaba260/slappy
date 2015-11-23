@@ -58,4 +58,9 @@ Slappy.configure do |config|
   #    URL to an image to use as the icon for this message
   #
   # config.robot.icon_url = nil
+
+  # brain:
+  #    Use Brain class in slappy-scripts
+  #
+  # config.robot.brain = Slappy::Brain::Memory.new
 end
