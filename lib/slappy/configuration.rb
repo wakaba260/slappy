@@ -1,9 +1,14 @@
 module Slappy
   class Configuration
-    attr_accessor :robot, :token, :scripts_dir_path, :lib_dir_path, :logger
+    attr_accessor :robot, :token, :scripts_dir_path, :lib_dir_path, :logger, :stop_with_error
 
     def initialize
       @robot = Robot.new
+    end
+
+    def stop_with_error
+      @stop_with_error = true if @stop_with_error.nil?
+      @stop_with_error
     end
 
     def logger
@@ -15,7 +20,7 @@ module Slappy
     end
 
     def token
-      @token || ENV['SLACK_TOKEN']
+      @token ||= ENV['SLACK_TOKEN']
     end
 
     def config_file_path
@@ -23,15 +28,15 @@ module Slappy
     end
 
     def lib_dir_path
-      @lib_dir_path || './lib'
+      @lib_dir_path ||= './lib'
     end
 
     def scripts_dir_path
-      @scripts_dir_path || './slappy-scripts'
+      @scripts_dir_path ||= './slappy-scripts'
     end
 
     def dsl
-      @dsl || :enabled
+      @dsl ||= :enabled
     end
 
     def dsl=(symbol)

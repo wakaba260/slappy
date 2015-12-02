@@ -29,6 +29,12 @@ Slappy.configure do |config|
   #
   # config.dsl = :enabled
 
+  # stop_with_error:
+  #   Select bot be stop when catch StandardError.
+  #   If false, puts stack trace but be not stop when bot catch StandardError.
+  #
+  # config.stop_with_exception = true
+
   ## Default parameters
   #
   # There parameters use in say method when send to Slack.

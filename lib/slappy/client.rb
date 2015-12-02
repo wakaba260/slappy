@@ -14,19 +14,17 @@ module Slappy
     end
 
     def start
-      @start_time = Time.now
-      @callbacks.each do |event_name, listeners|
-        register_event event_name, listeners
-      end
-      set_signal_trap
+      setup
+
       Debug.log 'Slappy start'
+
       begin
         client.start
       rescue StandardError => e
         @callbacks[:goodnight].each(&:call) if @callbacks[:goodnight]
         STDERR.puts e.backtrace.slice!(0) + ': ' + e.message
         STDERR.puts "\tfrom " + e.backtrace.join("\n\tfrom ")
-        exit 1
+        exit 1 if config.stop_with_error
       end
     end
 
@@ -65,6 +63,16 @@ module Slappy
     end
 
     private
+
+    def setup
+      @start_time = Time.now
+
+      @callbacks.each do |event_name, listeners|
+        register_event event_name, listeners
+      end
+
+      set_signal_trap
+    end
 
     def register_callback(name, type, callback)
       @callbacks[type] ||= []
