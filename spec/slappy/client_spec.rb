@@ -59,13 +59,23 @@ describe Slappy::Client do
   end
 
   describe '#goodnight' do
+    subject { client.start }
+
     before do
       allow_any_instance_of(::Slack::RealTime::Client).to receive(:start).and_raise(StandardError)
       allow(STDERR).to receive(:puts).and_return(nil)
       client.goodnight { print 'goodnight' }
     end
-    subject { client.start }
-    it { expect { subject }.to raise_error(SystemExit).and output('goodnight').to_stdout }
+
+    context 'when stop_with_error is true' do
+      it { expect { subject }.to raise_error(SystemExit).and output('goodnight').to_stdout }
+    end
+
+    context 'when stop_with_error is false' do
+      before { Slappy.configure { |config| config.stop_with_error = false } }
+      it { expect { subject }.not_to raise_error }
+      it { expect { subject }.to output('goodnight').to_stdout }
+    end
   end
 
   describe '#hello' do

@@ -106,6 +106,7 @@ Slappy.say 'hello!' #=> username: slappy, channel: '#general', icon_emoji: ':sla
 ```
 token            - default: ENV['SLACK_TOKEN']
 scripts_dir_path - default : 'slappy-scripts'
+stop_with_error  - default: true
 
 robot.botname    - not effect now
 robot.username   - default: 'slappy'
