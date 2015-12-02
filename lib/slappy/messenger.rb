@@ -4,11 +4,12 @@ module Slappy
 
     CHANNEL_APIS = [SlackAPI::Channel, SlackAPI::Group, SlackAPI::Direct]
 
-    def initialize(options)
+    def initialize(options = {})
+      opt = options.dup
       @destination = {}
-      @destination = options[:channel]
-      options.delete :channel
-      @options = options
+      @destination = opt[:channel]
+      opt.delete :channel
+      @options = opt
     end
 
     def message
