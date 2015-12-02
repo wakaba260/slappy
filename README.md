@@ -254,6 +254,13 @@ Slappy.start #=> Start WebSocket connection
 
 ## Release Note
 
+- v0.6.1
+  - Fix ts validation
+    - validation skil when ts be nil
+  - Fix option be bang change in Messenger#initialize
+  - Add Event#data
+  - Add stop_with_error option
+
 - v0.6.0
   - Add from option to hear, monitor
     - specify event target
