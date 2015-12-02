@@ -38,18 +38,7 @@ module Slappy
 
         def list(options = {})
           register_monitor
-
-          unless @list
-            method_name = "#{api_name}_list"
-
-            options[:channel] = SlackAPI.find(options[:channel]).id if options[:channel]
-            result = Slack.send(method_name, options)
-            unless result['ok']
-              exception = SlackError.new "Error message from slack (#{result['error']})"
-              fail exception, exception.message
-            end
-            @list = result[list_name].map { |data| new(data) }
-          end
+          @list = get_list(options) unless @list
           @list
         end
 
@@ -68,6 +57,22 @@ module Slappy
 
         def find_by_keyword(hash)
           hash.map { |key, value| list.find { |obj| obj.send(key) == value } }.first
+        end
+
+        private
+
+        def get_list(options = {})
+          method_name = "#{api_name}_list"
+
+          options[:channel] = SlackAPI.find(options[:channel]).id if options[:channel]
+          result = Slack.send(method_name, options)
+
+          unless result['ok']
+            exception = SlackError.new "Error message from slack (#{result['error']})"
+            fail exception, exception.message
+          end
+
+          result[list_name].map { |data| new(data) }
         end
       end
     end
