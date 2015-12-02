@@ -29,6 +29,7 @@ module Slappy
       private
 
       def time_valid?(event)
+        return true if event.ts.nil?
         event.ts > Slappy.client.start_time
       end
     end
