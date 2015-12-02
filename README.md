@@ -229,6 +229,7 @@ end
 
 |method|description|
 |:---:|:---|
+|data|get response JSON Hash (Hashie::Mash) from Slack API|
 |bot_message?|check message from bot (webhook or integration is true)|
 |reply|reply message to event channel|
 |reaction|add reaction to event message|
