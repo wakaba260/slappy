@@ -3,7 +3,7 @@ module Slappy
     extend Forwardable
     include Debuggable
 
-    attr_accessor :matches
+    attr_accessor :matches, :data
 
     def_delegators :@data, :method_missing, :respond_to_missing?
 
