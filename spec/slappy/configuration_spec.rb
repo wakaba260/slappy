@@ -41,7 +41,7 @@ describe Slappy::Configuration do
       context 'invalid dsl argument' do
         it 'raise ArgumentError' do
           expect { configuration.dsl = :invalid_symbol }.to raise_error(ArgumentError)
-          expect { configuration.dsl = "enabled" }.to raise_error(ArgumentError)
+          expect { configuration.dsl = 'enabled' }.to raise_error(ArgumentError)
         end
       end
     end
