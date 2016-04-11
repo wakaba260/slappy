@@ -40,7 +40,8 @@ module Slappy
     end
 
     def dsl=(symbol)
-      fail ArgumentError if [:enabled, :disabled].include? symbol
+      fail ArgumentError unless [:enabled, :disabled].include? symbol
+      @dsl = symbol
     end
 
     def send_params
