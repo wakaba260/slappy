@@ -33,7 +33,7 @@ Slappy.configure do |config|
   #   Select bot be stop when catch StandardError.
   #   If false, puts stack trace but be not stop when bot catch StandardError.
   #
-  # config.stop_with_exception = true
+  # config.stop_with_error = true
 
   ## Default parameters
   #
