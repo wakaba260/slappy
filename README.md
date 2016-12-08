@@ -254,6 +254,13 @@ Slappy.start #=> Start WebSocket connection
 
 ## Release Note
 
+- v0.6.3
+  - Fix did not work monitor reaction_added RTM (contribute from noir-neo [#43](https://github.com/wakaba260/slappy/pull/43))
+  - Fix option name in configuration template (contribute from Tomohiro [#42](https://github.com/wakaba260/slappy/pull/42))
+
+- v0.6.2
+  - Fix dsl config (contribute from Sho2010 [#41](https://github.com/wakaba260/slappy/pull/41))
+
 - v0.6.1
   - Fix ts validation
     - validation skil when ts be nil
