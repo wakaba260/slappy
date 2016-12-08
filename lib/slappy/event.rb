@@ -26,7 +26,7 @@ module Slappy
     end
 
     def ts
-      Time.at(@data['ts'].to_f)
+      Time.at((@data['ts'] || @data['event_ts']).to_f)
     end
 
     def reply(text, options = {})
