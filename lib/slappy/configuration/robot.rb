@@ -1,7 +1,7 @@
 module Slappy
   class Configuration
     class Robot
-      attr_accessor :botname, :username, :channel, :icon_emoji, :icon_url, :as_user
+      attr_accessor :botname, :username, :channel, :icon_emoji, :icon_url, :as_user, :brain
 
       def as_user
         @as_user || false
@@ -13,6 +13,10 @@ module Slappy
 
       def username
         @username || 'slappy'
+      end
+
+      def brain
+        @brain ||= Slappy::Brain::Memory.new
       end
     end
   end

@@ -3,7 +3,7 @@ module Slappy
     extend Forwardable
 
     def_delegators :Slappy, :hello, :hear, :say, :start, :logger,
-                   :schedule, :monitor, :goodnight, :respond
+                   :schedule, :monitor, :goodnight, :respond, :brain
   end
 end
 

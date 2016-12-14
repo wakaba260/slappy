@@ -12,7 +12,8 @@ module Slappy
     extend Forwardable
 
     def_delegators :configuration, :logger
-    def_delegators :client, :start, :hello, :hear, :say, :schedule, :monitor, :goodnight, :respond
+    def_delegators :client,   :start,   :hello,     :hear,    :say,
+                   :schedule, :monitor, :goodnight, :respond, :brain
 
     def configure
       @configuration = Configuration.new
@@ -34,6 +35,7 @@ end
 
 require 'slappy/concerns/debuggable'
 require 'slappy/slack_api'
+require 'slappy/brain'
 require 'slappy/cli'
 require 'slappy/client'
 require 'slappy/configuration'

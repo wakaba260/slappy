@@ -235,6 +235,41 @@ end
 |reply|reply message to event channel|
 |reaction|add reaction to event message|
 
+### Brain
+
+Brain is data store.
+
+- Brain#set is register to value.
+- Brain#get is get value with key.
+- Brain is share all slappy-scripts.
+
+```ruby
+brain.set :key, value #=> register value to slappy brain
+brain.get :key        #=> get value from slappy brain
+```
+
+#### Brain classes
+
+Slappy default support brains:
+
+```
+Slappy::Brain::Memory  - Data register to Hash object (Volatility).
+Slappy::Brain::File    - Data register to file (Marshal dump). Provide data persistence.
+```
+
+#### Brain settings
+
+Brain setting with slappy_config.rb
+Brain class instance for `config.robot.brain`, can use.
+Default parameter is `Slappy::Brain::Memory.new`
+
+##### Slappy::Brain::File
+
+Slappy::Brain::File required data stored file.
+
+```ruby
+config.robot.brain = Slappy::Brain::File.new(File.expand_path '../brain.dump', File.dirname(__FILE__))
+```
 
 ### In your Application
 
